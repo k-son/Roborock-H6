@@ -8,6 +8,7 @@
 
   @media only screen and (max-width: $bp-medium) {
     height: auto;
+    padding-top: 2.4rem;
   }
 
   &__text {
@@ -28,7 +29,8 @@
       position: static;
       left: 0;
       transform: translateX(0);
-      margin: 2.5rem auto 0;
+      margin: auto;
+      padding-bottom: 4rem;
     }
 
     & h3 {
@@ -62,21 +64,63 @@
         width: 100%;
         height: auto;
         left: 0;
-        transform: translate(0, -10%) scale(1.2);
+        transform: translate(0, -23%) scale(1.4);
       }
     }
   }
 }
 
 .red-dot {
+  position: relative;
   width: 4rem;
   height: 4rem;
   z-index: 3;
 
+  @media only screen and (max-width: $bp-large) {
+    width: 3.2rem;
+    height: 3.2rem;
+  }
+
+  @media only screen and (max-width: $bp-medium) {
+    width: 2.8rem;
+    height: 2.8rem;
+  }
+
   &--bedroom {
     position: absolute;
     top: 36%;
-    left: 46%;
+    left: 45%;
+
+    @media only screen and (max-width: $bp-large) {
+      top: 35%;
+      left: 48%;
+    }
+
+    @media only screen and (max-width: $bp-medium) {
+
+    }
+  }
+
+  &--livingroom {
+    position: absolute;
+    top: 67%;
+    left: 30%;
+
+    @media only screen and (max-width: $bp-large) {
+      top: 65%;
+      left: 33%;
+    }
+  }
+
+  &--car {
+    position: absolute;
+    top: 67%;
+    left: 75%;
+
+    @media only screen and (max-width: $bp-large) {
+      top: 65%;
+      left: 73%;
+    }
   }
 
   &__circle {
@@ -117,11 +161,12 @@
     }
 
     &:hover + .red-dot__tooltip {
-      display: block;
+      opacity: 1;
     }
   }
 
   &__tooltip {
+    display: block;
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
@@ -131,7 +176,42 @@
     font-size: 2rem;
     background-color: var(--color-bg-white);
     border-radius: 10px;
-    display: none;
+    opacity: 0;
+    transition: opacity .5s;
+
+    @media only screen and (max-width: $bp-large) {
+      left: -26.4rem;
+      width: 25rem;
+      font-size: 1.6rem;
+      padding: 2rem;
+    }
+
+    @media only screen and (max-width: $bp-medium) {
+      left: -10rem;
+      top: -3rem;
+      width: 12rem;
+      font-size: 1.4rem;
+      padding: 1rem;
+    }
+
+    &--bedroom {
+
+      @media only screen and (max-width: $bp-medium) {
+        left: -10rem;
+        top: -1rem;
+      }
+    }
+
+    &--livingroom {
+
+    }
+
+    &--car {
+
+      @media only screen and (max-width: $bp-medium) {
+        left: 4rem;
+      }
+    }
 
     &::after {
       display: block;
@@ -145,6 +225,13 @@
       border-top: 1.2rem solid transparent;
       border-left: 1.6rem solid var(--color-bg-white);
       border-bottom: 1.2rem solid transparent;
+
+      @media only screen and (max-width: $bp-large) {
+        right: -1.4rem;
+        border-top: 1rem solid transparent;
+        border-left: 1.4rem solid var(--color-bg-white);
+        border-bottom: 1rem solid transparent;
+      }
     }
   }
 }
