@@ -16,13 +16,23 @@
 
 /// H6 mixins
 
-@mixin h3 {
+@mixin H6-h3 {
   font-size: 3.6rem;
   font-weight: 300;
   margin-bottom: 1.6rem;
 
   @media only screen and (max-width: $bp-large) {
     font-size: 2.4rem;
+  }
+}
+
+@mixin H6-paragraph {
+  font-size: 1.6rem;
+  line-height: 2.4rem;
+
+  @media only screen and (max-width: $bp-large) {
+    font-size: 1.4rem;
+    line-height: 2.1rem;
   }
 }
 
