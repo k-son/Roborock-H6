@@ -1,6 +1,22 @@
 const animatedValueElement1 = document.querySelector("#countUpValue--1");
 const animatedValueElement2 = document.querySelector("#countUpValue--2");
 
+
+/** Animate countup in section Roborock H6 section **/
+
+window.addEventListener('scroll', startCountupWhenInViewport);
+
+function startCountupWhenInViewport() {
+  if (isElementInViewport(animatedValueElement1)) {
+    animateValue("countUpValue--1", 0, 90, 2000);
+    window.removeEventListener('scroll', startCountupWhenInViewport);
+  }
+  if (isElementInViewport(animatedValueElement2)) {  
+    animateValue("countUpValue--2", 0, 10, 1500);
+    window.removeEventListener('scroll', startCountupWhenInViewport);
+  }
+}
+
 function isElementInViewport(el) {
   const rect = el.getBoundingClientRect();
   return (
@@ -30,16 +46,5 @@ function animateValue(id, start, end, duration) {
     }, stepTime);
 }
 
-function startCountupWhenInViewport() {
-  if (isElementInViewport(animatedValueElement1)) {
-    animateValue("countUpValue--1", 0, 90, 2000);
-  }
-  if (isElementInViewport(animatedValueElement2)) {  
-    animateValue("countUpValue--2", 0, 10, 1500);
-  }
-}
-
-window.addEventListener('scroll', startCountupWhenInViewport);
-
-
+/** END OF: Animate countup in section Roborock H6 section **/
 
