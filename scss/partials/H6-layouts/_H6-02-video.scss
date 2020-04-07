@@ -1,7 +1,9 @@
 .h6__02-video {
   font-size: 0;
+  background-color: var(--color-black);
 
   &__content {
+    display: block;
     width: 100%;
     height: auto;
   }
