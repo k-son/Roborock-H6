@@ -35,7 +35,7 @@ function startCountupWhenInViewport() {
     animateValue("countUpValue--1", 0, 90, 2000);
   }
   if (isElementInViewport(animatedValueElement2)) {  
-    animateValue("countUpValue--2", 0, 10, 1000);
+    animateValue("countUpValue--2", 0, 10, 1500);
   }
 }
 
