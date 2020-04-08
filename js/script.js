@@ -1,8 +1,9 @@
 const animatedValueElement1 = document.querySelector("#countUpValue--1");
 const animatedValueElement2 = document.querySelector("#countUpValue--2");
+const redDots = document.querySelectorAll('.red-dot__circle');
 
 
-/** Animate countup in section Roborock H6 section **/
+/*** Animate countup in section Roborock H6 section ***/
 
 window.addEventListener('scroll', startCountupWhenInViewport);
 
@@ -45,6 +46,11 @@ function animateValue(id, start, end, duration) {
         }
     }, stepTime);
 }
-
 /** END OF: Animate countup in section Roborock H6 section **/
 
+
+/** Tooltip on btn press in Section 5 - House  **/
+
+redDots.forEach(el => el.addEventListener('click', function() {
+  el.nextElementSibling.classList.toggle('opacity1');
+}))
