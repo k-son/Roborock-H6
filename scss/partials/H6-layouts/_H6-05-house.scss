@@ -97,7 +97,8 @@
     }
 
     @media only screen and (max-width: $bp-medium) {
-
+      top: 13%;
+      left: 44%;
     }
   }
 
@@ -110,6 +111,10 @@
       top: 65%;
       left: 33%;
     }
+
+    @media only screen and (max-width: $bp-medium) {
+      left: 30%;
+    }
   }
 
   &--car {
@@ -120,6 +125,11 @@
     @media only screen and (max-width: $bp-large) {
       top: 65%;
       left: 73%;
+    }
+
+    @media only screen and (max-width: $bp-medium) {
+      top: 50%;
+      left: 85%;
     }
   }
 
@@ -187,8 +197,6 @@
     }
 
     @media only screen and (max-width: $bp-medium) {
-      left: -10rem;
-      top: -3rem;
       width: 12rem;
       font-size: 1.4rem;
       padding: 1rem;
@@ -197,19 +205,24 @@
     &--bedroom {
 
       @media only screen and (max-width: $bp-medium) {
-        left: -10rem;
-        top: -1rem;
+        left: -12.4rem;
+        top: 2rem;
       }
     }
 
     &--livingroom {
 
+      @media only screen and (max-width: $bp-medium) {
+        left: -8rem;
+        top: -4rem;
+      }
     }
 
     &--car {
 
       @media only screen and (max-width: $bp-medium) {
-        left: 4rem;
+        left: -7rem;
+        top: -3rem;
       }
     }
 
@@ -232,6 +245,14 @@
         border-left: 1.4rem solid var(--color-bg-white);
         border-bottom: 1rem solid transparent;
       }
+
+      @media only screen and (max-width: $bp-medium) {
+        display: none;
+      }
     }
   }
+}
+
+.opacity1 {
+  opacity: 1;
 }
