@@ -1,5 +1,6 @@
 .h6__06-filters {
   position: relative;
+  background-image: linear-gradient(to bottom, black, #10141D);
 
   &__text {
     position: absolute;
@@ -20,40 +21,34 @@
     }
   }
 
-  &__images {
-    position: relative;
-    height: 81rem;
-    overflow: hidden;
-
-    &__machine {
-      transition: opacity .5s;
-
-      & img {
-        display: block;
-        height: 100%;
-        width: auto;
-        position: absolute;
-        left: -25%;
-      }
-
-      &--1,
-      &--2,
-      &--3,
-      &--4,
-      &--5 {
-        opacity: 0;
-      }
-    }
-  }
-
   &__indicators {
     position: absolute;
-    top: 30%;
-    left: 65%;
+    top: 25%;
+    left: 70%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
+    @media only screen and (max-width: $bp-large) {
+      left: 65%;
+    }
+
+    @media only screen and (max-width: 1000px) {
+      left: 60%;
+    }
+
+    @media only screen and (max-width: $bp-medium) {
+      left: 65%;
+    }
+
+    @media only screen and (max-width: 800px) {
+      left: 55%;
+    }
+
+    @media only screen and (max-width: 600px) {
+      left: 55%;
+    }
     
     &__indicator {
       height: 5rem;
@@ -69,54 +64,128 @@
         transform: translateY(-50%);
         height: 2px;
         background-color: #878787;
+
+        @media only screen and (max-width: $bp-medium) {
+          top: 37%;
+        }
+
+        @media only screen and (max-width: 800px) {
+          display: none;
+        }
+
+        @media only screen and (max-width: 600px) {
+          display: block;
+          top: 30%;
+        }
       }
 
       &--1 {
 
         &::before {
-          --size: 20rem;
+          --size: 23rem;
           width: var(--size);
           left: calc((var(--size) + 2rem)*-1);
+
+          @media only screen and (max-width: $bp-large) {
+            --size: 18rem;
+          }
+
+          @media only screen and (max-width: $bp-medium) {
+            --size: 15rem;
+          }
+
+          @media only screen and (max-width: 800px) {
+            --size: 5rem;
+            left: calc(var(--size)*-1);
+          }
         }
       }
 
       &--2 {
-        margin-bottom: 7rem;
+        margin-bottom: 9rem;
 
         &::before {
-          --size: 17rem;
+          --size: 19rem;
           width: var(--size);
           left: calc((var(--size) + 2rem)*-1);
+
+          @media only screen and (max-width: $bp-large) {
+            --size: 15rem;
+          }
+
+          @media only screen and (max-width: $bp-medium) {
+            --size: 12rem;
+          }
+
+          @media only screen and (max-width: 800px) {
+            --size: 7rem;
+            left: calc(var(--size)*-1);
+          }
         }
       }
 
       &--3 {
-        margin-bottom: 7rem;
+        margin-bottom: 6rem;
 
         &::before {
-          --size: 15rem;
+          --size: 16rem;
           width: var(--size);
           left: calc((var(--size) + 2rem)*-1);
+
+          @media only screen and (max-width: $bp-large) {
+            --size: 12rem;
+          }
+
+          @media only screen and (max-width: $bp-medium) {
+            --size: 9rem;
+          }
+
+          @media only screen and (max-width: 800px) {
+            --size: 5rem;
+            left: calc(var(--size)*-1);
+          }
         }
       }
 
       &--4 {
-        margin-bottom: 3rem;
+        margin-bottom: 4rem;
 
         &::before {
-          --size: 12rem;
+          --size: 13rem;
           width: var(--size);
           left: calc((var(--size) + 2rem)*-1);
+
+          @media only screen and (max-width: $bp-large) {
+            --size: 9rem;
+          }
+
+          @media only screen and (max-width: $bp-medium) {
+            --size: 6rem;
+          }
+
+          @media only screen and (max-width: 800px) {
+            --size: 3rem;
+            left: calc(var(--size)*-1);
+          }
         }
       }
 
       &--5 {
-        margin-bottom: 3rem;
+        margin-bottom: 5rem;
 
         &::before {
           --size: 10rem;
           width: var(--size);
           left: calc((var(--size) + 2rem)*-1);
+
+          @media only screen and (max-width: $bp-large) {
+            --size: 6rem;
+          }
+
+          @media only screen and (max-width: $bp-medium) {
+            --size: 1rem;
+            left: calc(var(--size)*-1);
+          }
         }
       }
 
@@ -132,10 +201,6 @@
           display: inline;
         }
 
-        &--2:hover .h6__06-filters__images__machine--2 img {
-          opacity: 1 !important;
-        }
-
         &__digit {
           display: flex;
           justify-content: center;
@@ -147,6 +212,19 @@
           margin-right: 2rem;
           border: 1px solid var(--color-txt-white);
           border-radius: 50%;
+
+          @media only screen and (max-width: $bp-medium) {
+            width: 3.5rem;
+            height: 3.5rem;
+            font-size: 2rem;
+          }
+
+          @media only screen and (max-width: 600px) {
+            width: 3rem;
+            height: 3rem;
+            font-size: 1.4rem;
+            margin-right: 1rem;
+          }
         }
 
         &__text {
@@ -154,17 +232,92 @@
           width: 24rem;
           flex-shrink: 1;
 
+          @media only screen and (max-width: $bp-medium) {
+            width: 20rem;
+          }
+
+          @media only screen and (max-width: 600px) {
+            width: 16rem;   
+          }
+
           & h6 {
             font-size: 1.6rem;
             line-height: 4rem;
+
+            @media only screen and (max-width: $bp-medium) {
+              line-height: 3.5rem;
+            }
+
+            @media only screen and (max-width: 600px) {
+              font-size: 1.4rem;
+              line-height: 3rem;
+            }
           }
 
           & p {
             font-size: 1.4rem;
             font-weight: 300;
             display: none;
+
+            @media only screen and (max-width: $bp-medium) {
+              font-size: 1.2rem;
+            }
           }
         }
+      }
+    }
+  }
+
+  &__images {
+    position: relative;
+    height: 81rem;
+    overflow: hidden;
+
+    @media only screen and (max-width: 800px) {
+      height: 90rem;
+    }
+
+    @media only screen and (max-width: 600px) {
+   
+    }
+
+    &__machine {
+      transition: opacity .5s;
+
+      & img {
+        display: block;
+        height: 100%;
+        width: auto;
+        position: absolute;
+        left: -25%;
+
+        @media only screen and (max-width: $bp-large) {
+          left: -35%;
+        }
+
+        @media only screen and (max-width: 1000px) {
+          left: -50%;
+        }
+
+        @media only screen and (max-width: $bp-medium) {
+          left: -55%;
+        }
+
+        @media only screen and (max-width: 800px) {
+          left: 0%;
+        }
+
+        @media only screen and (max-width: 600px) {
+          
+        }
+      }
+
+      &--1,
+      &--2,
+      &--3,
+      &--4,
+      &--5 {
+        opacity: 0;
       }
     }
   }
