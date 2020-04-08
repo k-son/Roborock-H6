@@ -1,10 +1,13 @@
 const animatedValueElement1 = document.querySelector("#countUpValue--1");
 const animatedValueElement2 = document.querySelector("#countUpValue--2");
+
 const redDots = document.querySelectorAll('.red-dot__circle');
 
+const filtersButtons = document.querySelectorAll('.h6__06-filters__indicators__indicator__btn');
+let filterImages = document.querySelectorAll('.h6__06-filters__images__machine');
 
-/*** Animate countup in section Roborock H6 section ***/
 
+/*** Animate countup - in Section 4 - Battery ***/
 window.addEventListener('scroll', startCountupWhenInViewport);
 
 function startCountupWhenInViewport() {
@@ -46,11 +49,27 @@ function animateValue(id, start, end, duration) {
         }
     }, stepTime);
 }
-/** END OF: Animate countup in section Roborock H6 section **/
+/** END OF: Animate countup **/
 
 
-/** Tooltip on btn press in Section 5 - House  **/
-
+/*** Tooltip on btn press - in Section 5 - House * **/
 redDots.forEach(el => el.addEventListener('click', function() {
   el.nextElementSibling.classList.toggle('opacity1');
 }))
+/** END OF: Tooltip on btn press **/
+
+
+/*** Hover on button to change appropriate picture opacity - in Section 6 - Filters  ***/
+filterImages = Array.from(filterImages);
+filterImages.shift();
+filterImages.reverse();
+
+for (let i=0; i<filtersButtons.length; i++) {
+  filtersButtons[i].addEventListener('mouseover', function() {
+    filterImages[i].classList.add('opacity1');
+  })
+  filtersButtons[i].addEventListener('mouseout', function() {
+    filterImages[i].classList.remove('opacity1');
+  })
+}
+/** END OF: Hover on button to change appropriate picture opacity **/
