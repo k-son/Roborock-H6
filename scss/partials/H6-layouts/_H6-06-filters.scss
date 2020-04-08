@@ -1,0 +1,156 @@
+.h6__06-filters {
+  position: relative;
+
+  &__text {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    padding: 0 3rem;
+    margin-top: 3rem;
+    text-align: center;
+    color: var(--color-txt-white);
+    z-index: 2;
+
+    & h3 {
+      @include H6-h3;
+    }
+
+    & p {
+      @include H6-paragraph;
+    }
+  }
+
+  &__indicators {
+    
+    &__indicator {
+      position: absolute;
+      top: 30%;
+      left: 55%;
+      display: flex;
+      align-items: center;
+      height: 5rem;
+      color: var(--color-txt-white);
+      z-index: 2;
+
+      &--1 {
+
+      }
+
+      &--2 {
+        
+      }
+
+      &--3 {
+
+      }
+
+      &--4 {
+
+      }
+
+      &--5 {
+
+      }
+
+      &__bar {
+        height: 2px;
+        background-color: #838587;
+        margin-right: 3rem;
+        flex-shrink: 0;
+
+        &--1 {
+          width: 10rem;
+        }
+
+        &--2 {
+
+        }
+
+        &--3 {
+
+        }
+
+        &--4 {
+
+        }
+
+        &--5 {
+
+        }
+      }
+
+      &__btn {
+        display: flex;
+        align-items: center;
+
+        &:hover > &__digit {
+          background-color: var(--color-reddish);
+          border-color: var(--color-reddish);
+        }
+
+        &:hover > &__text p {
+          display: inline;
+        }
+
+        &__digit {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          flex-shrink: 0;
+          width: 4rem;
+          height: 4rem;
+          font-size: 2.4rem;
+          margin-right: 2rem;
+          border: 1px solid var(--color-txt-white);
+          border-radius: 50%;
+        }
+
+        &__text {
+          display: inline-block;
+          width: 24rem;
+          flex-shrink: 1;
+
+          & h6 {
+            font-size: 1.6rem;
+            line-height: 3.2rem;
+          }
+
+          & p {
+            font-size: 1.4rem;
+            font-weight: 300;
+            display: none;
+          }
+        }
+      }
+    }
+  }
+
+
+  &__images {
+    position: relative;
+    height: 81rem;
+    overflow: hidden;
+
+    &__machine {
+
+      & img {
+        display: block;
+        height: 100%;
+        width: auto;
+        position: absolute;
+        left: -25%;
+      }
+
+      &--0 {
+      }
+
+      &--1,
+      &--2,
+      &--3,
+      &--4,
+      &--5 {
+        opacity: 0;
+      }
+    }
+  }
+}

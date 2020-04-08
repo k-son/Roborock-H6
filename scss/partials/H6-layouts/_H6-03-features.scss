@@ -96,6 +96,7 @@
     }
 
     &__article {
+      @include H6-paragraph;
     }
   }
 

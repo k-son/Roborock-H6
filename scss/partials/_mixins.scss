@@ -29,6 +29,7 @@
 @mixin H6-paragraph {
   font-size: 1.6rem;
   line-height: 2.4rem;
+  font-weight: 300;
 
   @media only screen and (max-width: $bp-large) {
     font-size: 1.4rem;
