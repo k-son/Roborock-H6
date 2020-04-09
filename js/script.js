@@ -3,7 +3,7 @@ const animatedValueElement2 = document.querySelector("#countUpValue--2");
 
 const redDots = document.querySelectorAll('.red-dot__circle');
 
-const filtersButtons = document.querySelectorAll('.h6__06-filters__indicators__indicator__btn');
+let filtersButtons = document.querySelectorAll('.h6__06-filters__indicators__indicator__btn');
 let filterImages = document.querySelectorAll('.h6__06-filters__images__machine');
 
 
@@ -63,13 +63,24 @@ redDots.forEach(el => el.addEventListener('click', function() {
 filterImages = Array.from(filterImages);
 filterImages.shift();
 filterImages.reverse();
+filtersButtons = Array.from(filtersButtons);
+
+
 
 for (let i=0; i<filtersButtons.length; i++) {
-  filtersButtons[i].addEventListener('mouseover', function() {
-    filterImages[i].classList.add('opacity1');
-  })
-  filtersButtons[i].addEventListener('mouseout', function() {
-    filterImages[i].classList.remove('opacity1');
+  filtersButtons[i].addEventListener('click', function() { 
+    const index = filtersButtons.indexOf(filtersButtons[i]);
+    const cloneFiltersButtons = filtersButtons.slice();
+    cloneFiltersButtons.splice(index, 1);
+    const cloneFilterImages = filterImages.slice();
+    cloneFilterImages.splice(index, 1);
+
+    cloneFiltersButtons.forEach(el => el.firstElementChild.classList.remove('hoveredDigit'));
+    cloneFiltersButtons.forEach(el => el.lastElementChild.lastElementChild.classList.remove('displayInline'));
+    cloneFilterImages.forEach(el => el.classList.remove('opacity1'));
+    filtersButtons[i].firstElementChild.classList.toggle('hoveredDigit');
+    filtersButtons[i].lastElementChild.lastElementChild.classList.toggle('displayInline');
+    filterImages[i].classList.toggle('opacity1');
   })
 }
 /** END OF: Hover on button to change appropriate picture opacity **/
