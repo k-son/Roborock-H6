@@ -158,7 +158,7 @@
     &::before {
       width: 2px;
       height: 60%;
-      transition: all .3s;
+      transition: all .2s;
     }
 
     &::after {
@@ -166,8 +166,11 @@
       height: 2px;
     }
 
-    &:hover::before {
-      transform: rotate(-90deg);
+    &:hover::before,
+    &:hover::after {
+      height: 20%;
+      width: 20%;
+      border-radius: 50%;
     }
 
     &:hover + .red-dot__tooltip {
