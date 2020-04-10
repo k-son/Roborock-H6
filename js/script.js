@@ -1,7 +1,8 @@
+// Section 4 - Battery
 const animatedValueElement1 = document.querySelector("#countUpValue--1");
 const animatedValueElement2 = document.querySelector("#countUpValue--2");
 
-// Section 
+// Section 5 - House
 let redDots = document.querySelectorAll('.red-dot__circle');
 
 // Section 6 - Filters
@@ -73,9 +74,9 @@ for (let i=0; i<redDots.length; i++) {
 
 
 /*** Section 6 - Filters  ***/
-/* Switching images, Allergens Modal */
+/* Switch images, Allergens Modal */
 
-// Switching images
+// Switch images
 filterImages = Array.from(filterImages);
 filterImages.shift();
 filterImages.reverse();
