@@ -2,7 +2,7 @@ const animatedValueElement1 = document.querySelector("#countUpValue--1");
 const animatedValueElement2 = document.querySelector("#countUpValue--2");
 
 // Section 
-const redDots = document.querySelectorAll('.red-dot__circle');
+let redDots = document.querySelectorAll('.red-dot__circle');
 
 // Section 6 - Filters
 let filtersButtons = document.querySelectorAll('.h6__06-filters__indicators__indicator__btn');
@@ -59,9 +59,16 @@ function animateValue(id, start, end, duration) {
 
 
 /*** Tooltip on btn press - in Section 5 - House * **/
-redDots.forEach(el => el.addEventListener('click', function() {
-  el.nextElementSibling.classList.toggle('opacity1');
-}))
+redDots = Array.from(redDots);
+for (let i=0; i<redDots.length; i++) {
+  redDots[i].addEventListener('click', function() {
+    const index = redDots.indexOf(redDots[i]);
+    const cloneRedDots = redDots.slice();
+    cloneRedDots.splice(index, 1);
+    cloneRedDots.forEach(el => el.nextElementSibling.classList.remove('opacity1'));
+    redDots[i].nextElementSibling.classList.toggle('opacity1');
+  })
+}
 /** END OF: Tooltip on btn press **/
 
 
