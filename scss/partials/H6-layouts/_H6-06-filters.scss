@@ -2,10 +2,6 @@
   position: relative;
   background-image: linear-gradient(to bottom, black, #10141D);
 
-  @media only screen and (max-width: 600px) {
-    height: auto;
-  }
-
   &__text {
     position: absolute;
     top: 0;
@@ -53,26 +49,27 @@
     }
 
     @media only screen and (max-width: 800px) {
+      top: 20%;
       left: 55%;
     }
 
     @media only screen and (max-width: 600px) {
-      top: 65vw;
+      top: 58vw;
       left: 60%;
     }
 
     @media only screen and (max-width: 500px) {
-      top: 70vw;
+      top: 60vw;
       left: 55%;
     }
 
     @media only screen and (max-width: 422px) {
-      top: 85vw;
+      top: 75vw;
       left: 48vw;
     }
 
     @media only screen and (max-width: 355px) {
-      top: 95vw;
+      top: 80vw;
       left: 43vw;
     }
     
@@ -137,6 +134,10 @@
 
         @media only screen and (max-width: 600px) {
           margin-bottom: 16vw;
+        }
+
+        @media only screen and (max-width: 355px) {
+          margin-bottom: 13vw;
         }
 
         &::before {
@@ -373,8 +374,8 @@
     }
 
     @media only screen and (max-width: 600px) {
-      height: auto;
-      overflow: visible;
+      height: 75rem;
+      height: calc(100vw * 1.25);
     }
 
     &__machine {
@@ -420,27 +421,6 @@
     }
   }
 
-  &__allergensBtn-container {
-    background-image: linear-gradient(to right,  #090C11, #111820, #0E1317, #06070B);
-    z-index: 4;
-
-    @media only screen and (max-width: 800px) {
-      background-image: linear-gradient(to right, #0D1215, #151C26, #0F121A);
-    }
-
-    @media only screen and (max-width: 600px) {
-      display: none;
-    }
-
-    &--small-screen {
-      @media only screen and (min-width: 601px) {
-        display: none;
-      }
-
-      background-color: var(--color-black);
-    }
-  }
-
   &__modal {
     width: 100vw;
     min-height: 100vh;
@@ -464,7 +444,7 @@
       background-color: var(--color-bg-white);
 
       @media only screen and (max-width: 601px) {
-        margin-top: 3rem;
+        margin-top: 2.4rem;
       }
 
       &__close-btn {
@@ -600,10 +580,26 @@
           }
 
           &__description {
-
           }
         }
       }
+    }
+  }
+
+  &__allergensBtn {
+    z-index: 5;
+    background-image: linear-gradient(to right, #090C11, #10171F, #10171F, #090D10, #040507);
+
+    @media only screen and (max-width: 800px) and (min-width: 601px) {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: 2.4rem;
+      background-image: none;
+    }
+
+    @media only screen and (max-width: 600px) {
+      background-image: linear-gradient(to right, #0B1014, #111820, #121C25, #131A22, #10141D);
     }
   }
 }
@@ -629,9 +625,9 @@
     padding: .6rem 2.8rem;
   }
 
-  @media only screen and (max-width: 600px) {
+  @media only screen and (max-width: 700px) {
     font-size: 1.4rem;
-    padding: .6rem 2.4rem;
+    padding: .6rem 2.2rem;
     margin-top: 2.4rem;
     margin-bottom: 2.4rem;
   }
@@ -639,7 +635,6 @@
   &:hover {
     cursor: pointer;
   }
-
 }
 
 .opacity1 {
