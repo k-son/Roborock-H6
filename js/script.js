@@ -131,5 +131,4 @@ function allergensModalInsideContentClick(e) {
   e.stopImmediatePropagation();
   return false;
 }
-
 /** END OF: Section 6 - Filters **/
