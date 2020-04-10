@@ -1,10 +1,16 @@
 const animatedValueElement1 = document.querySelector("#countUpValue--1");
 const animatedValueElement2 = document.querySelector("#countUpValue--2");
 
+// Section 
 const redDots = document.querySelectorAll('.red-dot__circle');
 
+// Section 6 - Filters
 let filtersButtons = document.querySelectorAll('.h6__06-filters__indicators__indicator__btn');
 let filterImages = document.querySelectorAll('.h6__06-filters__images__machine');
+const readAboutAllergensBtn = document.querySelector('.readMoreBtn');
+const closeAllergensModalBtn = document.querySelector('.h6__06-filters__modal__content__close-btn');
+const allergensModal = document.querySelector('.h6__06-filters__modal');
+const allergensModalContent = document.querySelector('.h6__06-filters__modal__content');
 
 
 /*** Animate countup - in Section 4 - Battery ***/
@@ -59,20 +65,21 @@ redDots.forEach(el => el.addEventListener('click', function() {
 /** END OF: Tooltip on btn press **/
 
 
-/*** Hover on button to change appropriate picture opacity - in Section 6 - Filters  ***/
+/*** Section 6 - Filters  ***/
+/* Switching images, Allergens Modal */
+
+// Switching images
 filterImages = Array.from(filterImages);
 filterImages.shift();
 filterImages.reverse();
 filtersButtons = Array.from(filtersButtons);
 
-
-
 for (let i=0; i<filtersButtons.length; i++) {
   filtersButtons[i].addEventListener('click', function() { 
     const index = filtersButtons.indexOf(filtersButtons[i]);
-    const cloneFiltersButtons = filtersButtons.slice();
+    const cloneFiltersButtons = filtersButtons.slice(0);
     cloneFiltersButtons.splice(index, 1);
-    const cloneFilterImages = filterImages.slice();
+    const cloneFilterImages = filterImages.slice(0);
     cloneFilterImages.splice(index, 1);
 
     cloneFiltersButtons.forEach(el => el.firstElementChild.classList.remove('hoveredDigit'));
@@ -83,4 +90,30 @@ for (let i=0; i<filtersButtons.length; i++) {
     filterImages[i].classList.toggle('opacity1');
   })
 }
-/** END OF: Hover on button to change appropriate picture opacity **/
+
+// Allergens Modal
+readAboutAllergensBtn.addEventListener('click', function() {
+  allergensModal.classList.add('displayBlock');
+  document.body.classList.add('overflowHidden');
+})
+
+closeAllergensModalBtn.addEventListener('click', function() {
+  allergensModal.classList.remove('displayBlock');
+  document.body.classList.remove('overflowHidden');
+})
+
+allergensModal.addEventListener('click', clickToCloseAllergensModal);
+allergensModalContent.addEventListener('click', allergensModalInsideContentClick);
+
+function clickToCloseAllergensModal() {
+  allergensModal.classList.remove('displayBlock');
+  document.body.classList.remove('overflowHidden');
+}
+
+function allergensModalInsideContentClick(e) {
+  e.preventDefault();
+  e.stopPropagation();
+  e.stopImmediatePropagation();
+  return false;
+}
+/** END OF: Section 6 - Filters **/

@@ -57,22 +57,22 @@
     }
 
     @media only screen and (max-width: 600px) {
-      top: 55vw;
+      top: 65vw;
       left: 60%;
     }
 
     @media only screen and (max-width: 500px) {
-      top: 55vw;
+      top: 70vw;
       left: 55%;
     }
 
     @media only screen and (max-width: 422px) {
-      top: 70vw;
+      top: 85vw;
       left: 48vw;
     }
 
-    @media only screen and (max-width: 360px) {
-      top: 76vw;
+    @media only screen and (max-width: 355px) {
+      top: 95vw;
       left: 43vw;
     }
     
@@ -121,7 +121,7 @@
             --size: 15rem;
           }
 
-          @media only screen and (max-width: 800px) {
+          @media only screen and (max-width: 700px) {
             --size: 5rem;
             left: calc(var(--size)*-1);
           }
@@ -136,7 +136,7 @@
         margin-bottom: 9rem;
 
         @media only screen and (max-width: 600px) {
-          margin-bottom: 14vw;
+          margin-bottom: 16vw;
         }
 
         &::before {
@@ -152,7 +152,7 @@
             --size: 12rem;
           }
 
-          @media only screen and (max-width: 800px) {
+          @media only screen and (max-width: 700px) {
             --size: 7rem;
             left: calc(var(--size)*-1);
           }
@@ -183,7 +183,7 @@
             --size: 9rem;
           }
 
-          @media only screen and (max-width: 800px) {
+          @media only screen and (max-width: 700px) {
             --size: 5rem;
             left: calc(var(--size)*-1);
           }
@@ -198,7 +198,7 @@
         margin-bottom: 4rem;
 
         @media only screen and (max-width: 600px) {
-          margin-bottom: 6vw;
+          margin-bottom: 8vw;
         }
 
         &::before {
@@ -214,7 +214,7 @@
             --size: 6rem;
           }
 
-          @media only screen and (max-width: 800px) {
+          @media only screen and (max-width: 700px) {
             --size: 3rem;
             left: calc(var(--size)*-1);
           }
@@ -229,7 +229,7 @@
         margin-bottom: 5rem;
 
         @media only screen and (max-width: 600px) {
-          margin-bottom: 3vw;
+          margin-bottom: 5vw;
         }
 
         &::before {
@@ -246,7 +246,7 @@
             width: var(--size);
           }
 
-          @media only screen and (max-width: 800px) {
+          @media only screen and (max-width: 700px) {
             left: calc(var(--size)*-1);
           }
 
@@ -273,8 +273,8 @@
         */
         /*
         &:hover > &__digit {
-          background-color: var(--color-reddish);
-          border-color: var(--color-reddish);
+          background-color: var(--color-roborock);
+          border-color: var(--color-roborock);
         */
           /* IF WANTED DIFFERENT DESIGN
           @media only screen and (max-width: 600px) {
@@ -385,6 +385,7 @@
         height: 100%;
         width: auto;
         position: absolute;
+        top: 0;
         left: -25%;
 
         @media only screen and (max-width: $bp-large) {
@@ -418,6 +419,227 @@
       }
     }
   }
+
+  &__allergensBtn-container {
+    background-image: linear-gradient(to right,  #090C11, #111820, #0E1317, #06070B);
+    z-index: 4;
+
+    @media only screen and (max-width: 800px) {
+      background-image: linear-gradient(to right, #0D1215, #151C26, #0F121A);
+    }
+
+    @media only screen and (max-width: 600px) {
+      display: none;
+    }
+
+    &--small-screen {
+      @media only screen and (min-width: 601px) {
+        display: none;
+      }
+
+      background-color: var(--color-black);
+    }
+  }
+
+  &__modal {
+    width: 100vw;
+    min-height: 100vh;
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    background-color: rgba(120, 120, 120, 0.8);
+    z-index: 999;
+    display: none;
+    overflow-y: auto;
+
+    &__content {
+      position: absolute;
+      width: 86%;
+      max-width: 72rem;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: var(--color-bg-white);
+
+      @media only screen and (max-width: 601px) {
+        margin-top: 3rem;
+      }
+
+      &__close-btn {
+        position: absolute;
+        top: 1.4rem;
+        right: -6rem;
+        display: inline-block;
+        width: 4rem;
+        height: 4rem;
+        border-radius: 50%;
+        border: 2px solid var(--color-bg-white);
+        vertical-align: middle;
+
+        @media only screen and (max-width: $bp-medium) {
+          right: 50%;
+          top: 102%;
+          transform: translateX(50%);
+          margin-bottom: 3rem;
+        }
+
+        &::before,
+        &::after {
+          display: block;
+          content: "";
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          margin: auto;
+          width: 70%;
+          height: 2px;
+          background-color: var(--color-bg-white);
+        }
+
+        &::before {
+          transform: rotate(45deg);
+        }
+
+        &::after {
+          transform: rotate(-45deg);
+        }
+
+        &:hover {
+          border-color: #333;
+        }
+
+        &:active {
+          border-color: var(--color-roborock);
+        }
+
+        &:hover::before,
+        &:hover::after {
+          background-color: #333;
+        }
+
+        &:active::before,
+        &:active::after {
+          background-color: var(--color-roborock);
+        }
+      }
+  
+      &__header {
+        background-image: url(../img/heros-H6-modal-header-pc.png);
+        background-size: cover;
+        background-repeat: no-repeat;
+        font-size: 1.6rem;
+        line-height: 1.8;
+        font-weight: 300;
+        color: var(--color-txt-white);
+        padding: 4rem;
+
+        @media only screen and (max-width: 600px) {
+          font-size: 1.4rem;
+          padding: 2.8rem;
+        }
+      }
+  
+      &__allergens {
+        padding: 4rem;
+
+        @media only screen and (max-width: 600px) {
+          padding: 2.8rem;
+        }
+
+        &__list {
+        }
+
+        &__item {
+          display: flex;
+          flex-wrap: nowrap;
+          align-items: center;
+          font-size: 1.6rem;
+          font-weight: 300;
+
+          @media only screen and (max-width: 600px) {
+            font-size: 1.4rem;
+          }
+
+          &:not(:last-of-type) {
+            margin-bottom: 4rem;
+
+            @media only screen and (max-width: 600px) {
+              margin-bottom: 2.8rem;
+            }
+          }
+
+          &__allergen {
+            text-align: center;
+            margin-right: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            width: 9rem;
+            height: 9rem;
+
+            @media only screen and (max-width: 600px) {
+              margin-right: 1.2rem;
+            }
+
+            &__icon {
+              height: 5rem;
+
+              @media only screen and (max-width: 600px) {
+                height: 4rem;
+              }
+            }
+
+            &__name {
+            }
+          }
+
+          &__description {
+
+          }
+        }
+      }
+    }
+  }
+}
+
+.readMoreBtn {
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 1.8rem;
+  font-style: italic;
+  letter-spacing: 1px;
+  text-decoration: none;
+  padding: .8rem 3.2rem;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+  color: var(--color-txt-white);
+  background-color: var(--color-roborock);
+  border-radius: 5rem;
+  z-index: 4;
+
+  @media only screen and (max-width: $bp-medium) {
+    font-size: 1.6rem;
+    padding: .6rem 2.8rem;
+  }
+
+  @media only screen and (max-width: 600px) {
+    font-size: 1.4rem;
+    padding: .6rem 2.4rem;
+    margin-top: 2.4rem;
+    margin-bottom: 2.4rem;
+  }
+
+  &:hover {
+    cursor: pointer;
+  }
+
 }
 
 .opacity1 {
@@ -425,10 +647,18 @@
 }
 
 .hoveredDigit {
-  background-color: var(--color-reddish);
-  border-color: var(--color-reddish);
+  background-color: var(--color-roborock);
+  border-color: var(--color-roborock);
+}
+
+.displayBlock {
+  display: block !important;
 }
 
 .displayInline {
   display: inline !important;
+}
+
+.overflowHidden {
+  overflow: hidden;
 }
