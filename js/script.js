@@ -103,17 +103,24 @@ for (let i=0; i<filtersButtons.length; i++) {
 readAboutAllergensBtn.addEventListener('click', function() {
   allergensModal.classList.add('displayBlock');
   document.body.classList.add('overflowHidden');
+  document.body.addEventListener('keydown', closeAllergensModalOnKeypress);
 })
 
 closeAllergensModalBtn.addEventListener('click', function() {
-  allergensModal.classList.remove('displayBlock');
-  document.body.classList.remove('overflowHidden');
+  closeAllergensModal();
 })
 
-allergensModal.addEventListener('click', clickToCloseAllergensModal);
+allergensModal.addEventListener('click', closeAllergensModal);
 allergensModalContent.addEventListener('click', allergensModalInsideContentClick);
 
-function clickToCloseAllergensModal() {
+function closeAllergensModalOnKeypress(e) {
+  if (e.keyCode === 27 || e.keyCode === 13) {
+    event.preventDefault();
+    closeAllergensModal();
+  }
+}
+
+function closeAllergensModal() {
   allergensModal.classList.remove('displayBlock');
   document.body.classList.remove('overflowHidden');
 }
@@ -124,4 +131,5 @@ function allergensModalInsideContentClick(e) {
   e.stopImmediatePropagation();
   return false;
 }
+
 /** END OF: Section 6 - Filters **/
