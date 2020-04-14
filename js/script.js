@@ -13,8 +13,12 @@ const closeAllergensModalBtn = document.querySelector('.h6__06-filters__modal__c
 const allergensModal = document.querySelector('.h6__06-filters__modal');
 const allergensModalContent = document.querySelector('.h6__06-filters__modal__content');
 
+// Section 8 - Mop
+const mopCarpet = document.querySelector('.h6__08-mop__item--carpet');
+const mopFloor = document.querySelector('.h6__08-mop__item--floor');
 
-/*** Animate countup - in Section 4 - Battery ***/
+
+/*** Animate countup - Section 4 - Battery ***/
 window.addEventListener('scroll', startCountupWhenInViewport);
 
 function startCountupWhenInViewport() {
@@ -59,7 +63,7 @@ function animateValue(id, start, end, duration) {
 /** END OF: Animate countup **/
 
 
-/*** Tooltip on btn press - in Section 5 - House * **/
+/*** Tooltip on btn press - Section 5 - House * **/
 redDots = Array.from(redDots);
 for (let i=0; i<redDots.length; i++) {
   redDots[i].addEventListener('click', function() {
@@ -132,3 +136,34 @@ function allergensModalInsideContentClick(e) {
   return false;
 }
 /** END OF: Section 6 - Filters **/
+
+
+/*** Transform divs on hover - Section 8 - Mop ***/
+window.addEventListener('load', checkIfScreenOver801pxWide);
+window.addEventListener('resize', checkIfScreenOver801pxWide);
+
+function checkIfScreenOver801pxWide() {
+  let mopMatchMedia = window.matchMedia("(min-width: 801px)");
+  
+  if (mopMatchMedia.matches) {
+    mopFloor.classList.add('mop-floor');
+    mopFloor.addEventListener('mouseover', hideMopCarpet);
+    mopFloor.addEventListener('mouseout', hideMopFloor);
+  } else {
+    mopCarpet.classList.remove('mop-carpet');
+    mopFloor.classList.remove('mop-floor');
+    mopFloor.removeEventListener('mouseover', hideMopCarpet);
+    mopFloor.removeEventListener('mouseout', hideMopFloor);
+  }
+}
+
+function hideMopCarpet() {
+  mopCarpet.classList.add('mop-carpet');
+  mopFloor.classList.remove('mop-floor');
+}
+
+function hideMopFloor() {
+  mopCarpet.classList.remove('mop-carpet');
+  mopFloor.classList.add('mop-floor');
+}
+/** END OF: Section 8 - Mop **/
