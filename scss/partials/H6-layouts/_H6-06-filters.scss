@@ -100,7 +100,6 @@
           top: 30%;
           display: none;
         }
-
       }
 
       &--1 {
@@ -259,6 +258,11 @@
 
       &__btn {
         display: flex;
+
+        &:hover > &__digit,
+        &:focus > &__digit {
+          border-color: var(--color-roborock);
+        }
 
         /* IF WANTED DIFFERENT DESIGN
         @media only screen and (max-width: 600px) {
@@ -634,6 +638,11 @@
 
   &:hover {
     cursor: pointer;
+  }
+
+  &:hover,
+  &:focus {
+    box-shadow: 0 .6rem 0 0 #F33D55, 0 -.6rem 0 0 #F33D55, .1rem 0 0 6px #F33D55, -.1rem 0 0 6px #F33D55;
   }
 }
 

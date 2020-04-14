@@ -141,6 +141,7 @@
     background-color: var(--color-roborock);
     border-radius: 50%;
     vertical-align: middle;
+    transition: transform .2s;
 
     &::before,
     &::after {
@@ -175,6 +176,10 @@
 
     &:hover + .red-dot__tooltip {
       opacity: 1;
+    }
+
+    &:focus {
+      transform: scale(1.2);
     }
   }
 
