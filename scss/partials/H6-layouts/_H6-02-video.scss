@@ -3,8 +3,20 @@
   background-color: var(--color-black);
 
   &__content {
-    display: block;
+    display: none;
     width: 100%;
     height: auto;
+
+    &--large {
+      @media only screen and (min-width: 601px) {
+        display: block;
+      }
+    }
+
+    &--small {
+      @media only screen and (max-width: $bp-small) {
+        display: block;
+      }
+    }
   }
 }
