@@ -1,0 +1,90 @@
+.h6__09-endurance {
+  overflow: hidden;
+  padding: 3rem;
+
+  @media only screen and (max-width: $bp-small) {
+    padding: 2.4rem;
+  }
+
+  &__text {
+    text-align: center;
+    width: 60%;
+    margin: 0 auto 3rem auto;
+
+    @media only screen and (max-width: $bp-medium) {
+      width: 80%;
+    }
+
+    @media only screen and (max-width: 500px) {
+      width: 90%;
+    }
+
+    & h3 {
+      @include H6-h3;
+    }
+
+    & p {
+      @include H6-paragraph;
+    }
+  }
+
+  &__qualities {
+
+    &__quality {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      display: none;
+      text-align: center;
+
+      @media only screen and (max-width: 550px) {
+        align-items: flex-start;
+      }
+
+      & img {
+        height: 3rem;
+        width: auto;
+        margin-right: 1.6rem;
+
+        @media only screen and (max-width: 550px) {
+          height: 2.4rem;
+          margin-right: 1rem;
+        }
+      }
+
+      & h4 {
+        font-size: 2.4rem;
+
+        @media only screen and (max-width: 700px) {
+          font-size: 2rem;
+        }
+
+        @media only screen and (max-width: 550px) {
+          font-size: 1.8rem;
+        }
+      }
+    }
+  }
+
+  &__images {
+
+    &__image {
+
+      & img {
+        width: 100%;
+        height: auto;
+        display: none;
+      }
+    }
+  }
+}
+
+
+// js classes
+.displayBlock {
+  display: block !important;
+}
+
+.displayFlex {
+  display: flex !important;
+}

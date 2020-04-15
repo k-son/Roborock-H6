@@ -17,6 +17,10 @@ const allergensModalContent = document.querySelector('.h6__06-filters__modal__co
 const mopCarpet = document.querySelector('.h6__08-mop__item--carpet');
 const mopFloor = document.querySelector('.h6__08-mop__item--floor');
 
+// Section 9 - Endurance
+let enduranceQualities = document.querySelectorAll('.h6__09-endurance__qualities__quality');
+let enduranceImages = document.querySelectorAll('.h6__09-endurance__images__image img');
+
 // Section 10 - Screen
 let screenButtons = document.querySelectorAll('.h6__10-screen__button');
 let screenVideos = document.querySelectorAll('.h6__10-screen__video');
@@ -191,6 +195,49 @@ function hideMopFloor() {
   mopFloor.classList.add('mop-floor');
 }
 /** END OF: Section 8 - Mop **/
+
+
+/*** Section 9 - Endurance  ***/
+enduranceQualities = Array.from(enduranceQualities);
+enduranceImages = Array.from(enduranceImages);
+const cloneEnduranceQualities = enduranceQualities.slice(0);
+const cloneEnduranceImages = enduranceImages.slice(0);
+
+cloneEnduranceQualities[0].classList.add('displayFlex');
+cloneEnduranceImages[0].classList.add('displayBlock');
+
+setTimeout(() => {
+  setInterval(() => {
+    hideEnduranceQualities();
+    showEnduranceQuality(0);
+  }, 6000);
+}, 0);
+
+setTimeout(() => {
+  setInterval(() => {
+    hideEnduranceQualities();
+    showEnduranceQuality(1);
+  }, 6000);
+}, 2000);
+
+setTimeout(() => {
+  setInterval(() => {
+    hideEnduranceQualities();
+    showEnduranceQuality(2);
+  }, 6000);
+}, 4000);
+
+function showEnduranceQuality(i) {
+  cloneEnduranceQualities[i].classList.add('displayFlex');
+  cloneEnduranceImages[i].classList.add('displayBlock');
+}
+
+function hideEnduranceQualities() {
+  cloneEnduranceQualities.forEach(el => el.classList.remove('displayFlex'));
+  cloneEnduranceImages.forEach(el => el.classList.remove('displayBlock'));
+}
+
+/** END OF: Section 9 - Endurance **/
 
 
 /*** Section 10 - Screen  ***/
