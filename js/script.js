@@ -82,6 +82,7 @@ for (let i=0; i<redDots.length; i++) {
 
 // Switch images
 filterImages = Array.from(filterImages);
+const baseFilterImage = filterImages[0];
 filterImages.shift();
 filterImages.reverse();
 filtersButtons = Array.from(filtersButtons);
@@ -94,12 +95,31 @@ for (let i=0; i<filtersButtons.length; i++) {
     const cloneFilterImages = filterImages.slice(0);
     cloneFilterImages.splice(index, 1);
 
+    // handle buttons' styles
     cloneFiltersButtons.forEach(el => el.firstElementChild.classList.remove('hoveredDigit'));
-    cloneFiltersButtons.forEach(el => el.lastElementChild.lastElementChild.classList.remove('displayInline'));
-    cloneFilterImages.forEach(el => el.classList.remove('opacity1'));
+    cloneFiltersButtons.forEach(el => el.lastElementChild.lastElementChild.classList.remove('displayInline')); //contract button's inner text
     filtersButtons[i].firstElementChild.classList.toggle('hoveredDigit');
-    filtersButtons[i].lastElementChild.lastElementChild.classList.toggle('displayInline');
+    filtersButtons[i].lastElementChild.lastElementChild.classList.toggle('displayInline'); //expand button's inner text
+
+    // chceck if any button is active
+    const cloneFilterImagesContainingClassOpacity1 = [];
+    for (let i=0; i<cloneFilterImages.length; i++) {
+      if (cloneFilterImages[i].classList.contains('opacity1')) {
+        cloneFilterImagesContainingClassOpacity1.push(cloneFilterImages[i]);
+      }
+    }
+
+    // if any button is active, then hide base image
+    if (cloneFilterImagesContainingClassOpacity1.length > 0) {
+      baseFilterImage.style.display = "none";
+      }
+
+    // handle images' styles
+    cloneFilterImages.forEach(el => el.classList.remove('opacity1'));
     filterImages[i].classList.toggle('opacity1');
+    if (! filterImages[i].classList.contains('opacity1')) {
+      baseFilterImage.style.display = "block";
+    }
   })
 }
 
