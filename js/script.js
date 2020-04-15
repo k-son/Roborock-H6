@@ -17,6 +17,10 @@ const allergensModalContent = document.querySelector('.h6__06-filters__modal__co
 const mopCarpet = document.querySelector('.h6__08-mop__item--carpet');
 const mopFloor = document.querySelector('.h6__08-mop__item--floor');
 
+// Section 10 - Screen
+let screenButtons = document.querySelectorAll('.h6__10-screen__button');
+let screenVideos = document.querySelectorAll('.h6__10-screen__video');
+
 
 /*** Animate countup - Section 4 - Battery ***/
 window.addEventListener('scroll', startCountupWhenInViewport);
@@ -189,10 +193,7 @@ function hideMopFloor() {
 /** END OF: Section 8 - Mop **/
 
 
-/*** Section 9 - Screen  ***/
-let screenButtons = document.querySelectorAll('.h6__09-screen__button');
-let screenVideos = document.querySelectorAll('.h6__09-screen__video');
-
+/*** Section 10 - Screen  ***/
 screenButtons = Array.from(screenButtons);
 screenVideos = Array.from(screenVideos);
 
@@ -214,4 +215,4 @@ for (let i=0; i<screenButtons.length; i++) {
     screenVideos[i].play();
   })
 }
-/** END OF: Section 9 - Screen **/
+/** END OF: Section 10 - Screen **/
