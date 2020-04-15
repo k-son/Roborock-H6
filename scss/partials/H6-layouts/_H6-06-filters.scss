@@ -448,10 +448,11 @@
       background-color: var(--color-bg-white);
 
       @media only screen and (max-width: 601px) {
+        width: 80%;
         margin-top: 4rem;
       }
       @media only screen and (max-width: 330px) {
-        margin-top: 10rem;
+        margin-top: 16rem;
       }
 
       &__close-btn {

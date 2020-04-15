@@ -187,3 +187,31 @@ function hideMopFloor() {
   mopFloor.classList.add('mop-floor');
 }
 /** END OF: Section 8 - Mop **/
+
+
+/*** Section 9 - Screen  ***/
+let screenButtons = document.querySelectorAll('.h6__09-screen__button');
+let screenVideos = document.querySelectorAll('.h6__09-screen__video');
+
+screenButtons = Array.from(screenButtons);
+screenVideos = Array.from(screenVideos);
+
+screenButtons[0].classList.add('screenButtonPressed');
+screenVideos[0].classList.add('displayBlock');
+
+for (let i=0; i<screenButtons.length; i++) {
+  screenButtons[i].addEventListener('click', function() {
+    const index = screenButtons.indexOf(screenButtons[i]);
+    const clondedScreenButtons = screenButtons.slice(0);
+    clondedScreenButtons.splice(index, 1);
+    clondedScreenButtons.forEach(el => el.classList.remove('screenButtonPressed'));
+    screenButtons[i].classList.add('screenButtonPressed');
+
+    const clonedScreenVideos = screenVideos.slice(0);
+    clonedScreenVideos.splice(index, 1);
+    clonedScreenVideos.forEach(el => el.classList.remove('displayBlock'));
+    screenVideos[i].classList.add('displayBlock');
+    screenVideos[i].play();
+  })
+}
+/** END OF: Section 9 - Screen **/
