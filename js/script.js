@@ -264,28 +264,31 @@ for (let i=0; i<screenButtons.length; i++) {
 /** END OF: Section 10 - Screen **/
 
 
-/*** Section 11 - Lock  ***/
+/*** Section 11 - Lock ***/
+/* Create and append videos */
+/* Replace videos if window resize pass the screen width breakpoint value */
+/* Play videos */
 
-// Create and append videos
+/// Create and append videos
 createVideos();
 
 function createVideos() {
   const lockMatchMedia = window.matchMedia("(max-width: 751px)");
   if (lockMatchMedia.matches) {
     addVideo('.h6__11-lock', '../video/heros-H6-video-lock-m.mp4', 'h6__11-lock__video h6__11-lock__video--lock', '100%', 'auto');
-    addVideo('.h6__11-lock', '../video/heros-H6-video-unlock-m.mp4', 'h6__11-lock__video h6__11-lock__video--unlock', '100%', 'auto');
+    addVideo('.h6__11-lock', '../video/heros-H6-video-unlock-m.mp4', 'h6__11-lock__video h6__11-lock__video--unlock hideVideoSectionLock', '100%', 'auto');
   } else {
     addVideo('.h6__11-lock', '../video/heros-H6-video-lock-pc.mp4', 'h6__11-lock__video h6__11-lock__video--lock', '100%', 'auto');
-    addVideo('.h6__11-lock', '../video/heros-H6-video-unlock-pc.mp4', 'h6__11-lock__video h6__11-lock__video--unlock', '100%', 'auto');
+    addVideo('.h6__11-lock', '../video/heros-H6-video-unlock-pc.mp4', 'h6__11-lock__video h6__11-lock__video--unlock hideVideoSectionLock', '100%', 'auto');
   }
 }
 
-/* Adds a new video to the document under the first element matching the parentSelector */
+// Adds a new video to the document under the first element matching the parentSelector
 function addVideo(parentSelector, src, className, width, height) {
   const parent = document.querySelector(parentSelector);
-  /* Check that parent exists before proceeding */
+  // Check that parent exists before proceeding
   if(parent) {
-    /* Create new video element */
+    // Create new video element
     const video = document.createElement('video');
     video.setAttribute('class', className);    
     video.setAttribute('muted', true);      
@@ -295,16 +298,16 @@ function addVideo(parentSelector, src, className, width, height) {
     if(height) {
       video.setAttribute('height', height);
     }
-    /* Create a new source element and populate it with the src attribute */
+    // Create a new source element and populate it with the src attribute
     const source = document.createElement('source');    
     source.setAttribute('src', src);    
-    /* Add source element to the video we're inserting and add the video element to the document element */
+    // Add source element to the video we're inserting and add the video element to the document element
     video.appendChild(source);    
     parent.appendChild(video);    
   }
 }
 
-// Replace videos if window resize pass the screen width breakpoint value
+/// Replace videos if window resize pass the screen width breakpoint value
 window.addEventListener('resize', replaceLockUnlockVideos);
 
 let currentScreenWidth = window.innerWidth;
@@ -322,7 +325,7 @@ function appendHiResVideos() {
   const newScreenWidth = window.innerWidth;
   if (newScreenWidth > breakPointForSectionLock) {
     removeLockUnlockVideos();
-    addVideo('.h6__11-lock', '../video/heros-H6-video-lock-pc.mp4', 'h6__11-lock__video h6__11-lock__video--lock', '100%', 'auto');
+    addVideo('.h6__11-lock', '../video/heros-H6-video-lock-pc.mp4', 'h6__11-lock__video h6__11-lock__video--lock hideVideoSectionLock', '100%', 'auto');
     addVideo('.h6__11-lock', '../video/heros-H6-video-unlock-pc.mp4', 'h6__11-lock__video h6__11-lock__video--unlock', '100%', 'auto');
   }
   window.removeEventListener('resize', appendHiResVideos);
@@ -333,7 +336,7 @@ function appendLowResVideos() {
   const newScreenWidth = window.innerWidth;
   if (newScreenWidth <= breakPointForSectionLock) {
     removeLockUnlockVideos();
-    addVideo('.h6__11-lock', '../video/heros-H6-video-lock-m.mp4', 'h6__11-lock__video h6__11-lock__video--lock', '100%', 'auto');
+    addVideo('.h6__11-lock', '../video/heros-H6-video-lock-m.mp4', 'h6__11-lock__video h6__11-lock__video--lock hideVideoSectionLock', '100%', 'auto');
     addVideo('.h6__11-lock', '../video/heros-H6-video-unlock-m.mp4', 'h6__11-lock__video h6__11-lock__video--unlock', '100%', 'auto');
   }
   window.removeEventListener('resize', appendLowResVideos);
@@ -349,9 +352,41 @@ function removeLockUnlockVideos() {
 }
 
 
-// Handle buttons
-const videoLock = document.querySelector('.h6__11-lock__video--lock'); 
-const videoUnlock = document.querySelector('.h6__11-lock__video--unlock');
+/// Play videos
+let videoLock;
+let videoUnlock;
+const playVideoLockBtn = document.querySelector('.h6__11-lock__buttons__button--lock');
+const playVideoUnlockBtn = document.querySelector('.h6__11-lock__buttons__button--unlock');
 
+playVideoLockBtn.classList.add('focusButtonSectionLock');
+playVideoLockBtn.addEventListener('click', playVideoLock);
+playVideoUnlockBtn.addEventListener('click', playVideoUnlock);
+
+function playVideoLock() {
+  getVideosSectionLock();
+  playVideoUnlockBtn.classList.remove('focusButtonSectionLock');
+  if (!playVideoLockBtn.classList.contains('focusButtonSectionLock')) {
+    this.classList.add('focusButtonSectionLock');
+  }
+  videoUnlock.classList.add('hideVideoSectionLock');
+  videoLock.classList.remove('hideVideoSectionLock');
+  videoLock.play();
+}
+
+function playVideoUnlock() {
+  getVideosSectionLock();
+  playVideoLockBtn.classList.remove('focusButtonSectionLock');
+  if (!playVideoUnlockBtn.classList.contains('focusButtonSectionLock')) {
+    this.classList.add('focusButtonSectionLock');
+  }
+  videoLock.classList.add('hideVideoSectionLock');
+  videoUnlock.classList.remove('hideVideoSectionLock');
+  videoUnlock.play();
+}
+
+function getVideosSectionLock() {
+  videoLock = document.querySelector('.h6__11-lock__video--lock'); 
+  videoUnlock = document.querySelector('.h6__11-lock__video--unlock');
+}
 
 /** END OF: Section 11 - Lock **/
