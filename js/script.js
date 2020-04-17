@@ -1,3 +1,4 @@
+/*** Variables ***/
 // Section 4 - Battery
 const animatedElement1 = document.querySelector("#countUpValue--1");
 const animatedElement2 = document.querySelector("#countUpValue--2");
@@ -24,6 +25,48 @@ let enduranceImages = document.querySelectorAll('.h6__09-endurance__images__imag
 // Section 10 - Screen
 let screenButtons = document.querySelectorAll('.h6__10-screen__button');
 let screenVideos = document.querySelectorAll('.h6__10-screen__video');
+
+
+/*** Create video - Section 2 - Video ***/
+createVideosSectionVideo();
+
+function createVideosSectionVideo() {
+  const lockMatchMedia = window.matchMedia("(max-width: 601px)");
+  if (lockMatchMedia.matches) {
+    addVideo('.h6__02__video-box', '../video/Roborock_H6_360p.mp4', 'h6__02__video h6__02__video--small', '100%', 'auto');
+  } else {
+    addVideo('.h6__02__video-box', '../video/Roborock_H6_720p.mp4', 'h6__02__video h6__02__video--large', '100%', 'auto');
+  }
+}
+
+const createdVideoSectionVideo = document.querySelector('.h6__02__video');
+createdVideoSectionVideo.autoplay = true;
+createdVideoSectionVideo.loop = true;
+
+// Adds a new video to the document under the first element matching the parentSelector
+function addVideo(parentSelector, src, className, width, height) {
+  const parent = document.querySelector(parentSelector);
+  // Check that parent exists before proceeding
+  if(parent) {
+    // Create new video element
+    const video = document.createElement('video');
+    video.muted = true;   
+    video.setAttribute('class', className);    
+    if(width) {
+      video.setAttribute('width', width);
+    }
+    if(height) {
+      video.setAttribute('height', height);
+    }
+    // Create a new source element and populate it with the src attribute
+    const source = document.createElement('source');    
+    source.setAttribute('src', src);    
+    // Add source element to the video we're inserting and add the video element to the document element
+    video.appendChild(source);    
+    parent.appendChild(video);    
+  }
+}
+/** END OF: Section 2 - Video **/
 
 
 /*** Animate countup - Section 4 - Battery ***/
@@ -270,9 +313,9 @@ for (let i=0; i<screenButtons.length; i++) {
 /* Play videos */
 
 /// Create and append videos
-createVideos();
+createVideosSectionLock();
 
-function createVideos() {
+function createVideosSectionLock() {
   const lockMatchMedia = window.matchMedia("(max-width: 751px)");
   if (lockMatchMedia.matches) {
     addVideo('.h6__11-lock', '../video/heros-H6-video-lock-m.mp4', 'h6__11-lock__video h6__11-lock__video--lock', '100%', 'auto');
@@ -282,30 +325,7 @@ function createVideos() {
     addVideo('.h6__11-lock', '../video/heros-H6-video-unlock-pc.mp4', 'h6__11-lock__video h6__11-lock__video--unlock hideVideoSectionLock', '100%', 'auto');
   }
 }
-
-// Adds a new video to the document under the first element matching the parentSelector
-function addVideo(parentSelector, src, className, width, height) {
-  const parent = document.querySelector(parentSelector);
-  // Check that parent exists before proceeding
-  if(parent) {
-    // Create new video element
-    const video = document.createElement('video');
-    video.setAttribute('class', className);    
-    video.setAttribute('muted', true);      
-    if(width) {
-      video.setAttribute('width', width);
-    }
-    if(height) {
-      video.setAttribute('height', height);
-    }
-    // Create a new source element and populate it with the src attribute
-    const source = document.createElement('source');    
-    source.setAttribute('src', src);    
-    // Add source element to the video we're inserting and add the video element to the document element
-    video.appendChild(source);    
-    parent.appendChild(video);    
-  }
-}
+// You can find "addVideo" function code in Section 02 - Video
 
 /// Replace videos if window resize pass the screen width breakpoint value
 window.addEventListener('resize', replaceLockUnlockVideos);

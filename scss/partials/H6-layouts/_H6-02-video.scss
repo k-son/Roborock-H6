@@ -1,22 +1,13 @@
-.h6__02-video {
-  font-size: 0;
-  background-color: var(--color-black);
+.h6__02 {
 
-  &__content {
-    display: none;
+  &__video-box {
+    font-size: 0;
+    background-color: var(--color-black);
+  }
+
+  &__video {
+    display: block;
     width: 100%;
     height: auto;
-
-    &--small {
-      @media only screen and (max-width: $bp-small) {
-        display: block;
-      }
-    }
-  
-    &--large {
-      @media only screen and (min-width: 601px) {
-        display: block;
-      }
-    }
   }
 }
