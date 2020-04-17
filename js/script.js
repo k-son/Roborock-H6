@@ -408,3 +408,25 @@ function getVideosSectionLock() {
 }
 
 /** END OF: Section 11 - Lock **/
+
+
+/*** Section 13 - Noise ***/
+/*
+const noiseImages = document.querySelectorAll('.h6__13-noise__images__image img');
+let previousNoiseImage = noiseImages[0];
+let noiseTimeOut = -3000;
+let noiseInterval = 3000 * noiseImages.length;
+
+noiseImages[0].classList.add('displayBlock');
+
+for (let i=0; i<noiseImages.length; i++) {
+  noiseTimeOut += 3000;
+  setTimeout(() => {
+    setInterval(() => {
+      noiseImages[i].classList.add('displayBlock');
+      previousNoiseImage.classList.remove('displayBlock');
+      previousNoiseImage = noiseImages[i];
+    }, noiseInterval);
+  }, noiseTimeOut);
+}
+/** END OF: Section 13 - Noise **/

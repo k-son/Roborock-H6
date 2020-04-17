@@ -1,0 +1,314 @@
+.h6__13-noise {
+  position: relative;
+  overflow: hidden;
+  height: 55rem;
+
+  &__soundwave {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+    height: 8rem;
+
+    &__wave {
+      width: 4px;
+      animation-name: soundwave;
+      animation-iteration-count: infinite;
+      animation-direction: alternate;
+      animation-timing-function: linear;
+
+      &:not(:last-of-type) {
+        margin-right: 6px;
+      }
+
+      &--1 {
+
+        animation-duration: .77s;
+        animation-delay: .7s;
+      }
+
+      &--2 {
+
+        animation-duration: .73s;
+        animation-delay: .55s;
+      }
+
+      &--3 {
+
+        animation-duration: .7s;
+        animation-delay: .4s;
+      }
+
+      &--4 {
+
+        animation-duration: .76s;
+        animation-delay: .25s;
+      }
+
+      &--5 {
+
+        animation-duration: .7s;
+        animation-delay: .1s;
+      }
+
+      &--6 {
+
+        animation-duration: .73s;
+        animation-delay: .7s;
+      }
+
+      &--7 {
+
+        animation-duration: .76s;
+        animation-delay: .55s;
+      }
+
+      &--8 {
+
+        animation-duration: .72s;
+        animation-delay: .4s;
+      }
+
+      &--9 {
+        animation-duration: .79s;
+        animation-delay: .25s;
+      }
+
+      &--10 {
+        animation-duration: .76s;
+        animation-delay: .7s;
+      }
+
+      &--11 {
+        animation-duration: .73s;
+        animation-delay: .55s;
+      }
+
+      &--12 {
+
+        animation-duration: .76s;
+        animation-delay: .4s;
+      }
+
+      &--13 {
+        animation-duration: .73s;
+        animation-delay: .25s;
+      }
+
+      &--14 {
+
+        animation-duration: .76s;
+        animation-delay: .1s;
+      }
+
+      &--15 {
+
+        animation-duration: .7s;
+        animation-delay: .7s;
+      }
+
+      &--16 {
+
+        animation-duration: .73s;
+        animation-delay: .55s;
+      }
+
+      &--17 {
+
+        animation-duration: .76s;
+        animation-delay: .4s;
+      }
+
+      &--18 {
+
+        animation-duration: .79s;
+        animation-delay: .25s;
+      }
+
+      &--19 {
+
+        animation-duration: .76s;
+        animation-delay: .1s;
+      }
+
+      &--20 {
+
+        animation-duration: .73s;
+        animation-delay: .7s;
+      }
+    }
+  }
+
+  &__images {
+
+    &__image {
+
+      & img {
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        display: block;
+        height: 100%;
+        width: auto;
+        z-index: -1;
+      }
+
+      &--1 {
+        
+        & img {
+          animation-name: animateImage1;
+          animation-duration: 15s;
+          animation-iteration-count: infinite;
+        }
+      }
+
+      &--2 {
+        
+        & img {
+          animation-name: animateImage2;
+          animation-duration: 15s;
+          animation-iteration-count: infinite;
+        }
+      }
+
+      &--3 {
+        
+        & img {
+          animation-name: animateImage3;
+          animation-duration: 15s;
+          animation-iteration-count: infinite;
+        }
+      }
+
+      &--4 {
+        
+        & img {
+          animation-name: animateImage4;
+          animation-duration: 15s;
+          animation-iteration-count: infinite;
+        }
+      }
+
+      &--5 {
+        
+        & img {
+          animation-name: animateImage5;
+          animation-duration: 15s;
+          animation-iteration-count: infinite;
+        }
+      }
+    }
+  }
+}
+
+
+@keyframes soundwave {
+  0% {
+    height: 4.2rem;     
+    background-color: #888;
+  }
+  100% {
+    background-color: #444;
+    height: 1.2rem;
+  }
+}
+
+
+
+@keyframes animateImage1 {
+  0% {
+    opacity: 1;
+  }
+  20% {
+    opacity: 1;
+  }
+  23% {
+    opacity: 0;
+  }
+  97% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes animateImage2 {
+  0% {
+    opacity: 0;
+  }
+  17% {
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  40% {
+    opacity: 1;
+  }
+  43% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes animateImage3 {
+  0% {
+    opacity: 0;
+  }
+  37% {
+    opacity: 0;
+  }
+  40% {
+    opacity: 1;
+  }
+  60% {
+    opacity: 1;
+  }
+  63% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes animateImage4 {
+  0% {
+    opacity: 0;
+  }
+  57% {
+    opacity: 0;
+  }
+  60% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  83% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes animateImage5 {
+  3% {
+    opacity: 0;
+  }
+  77% {
+    opacity: 0;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+  }
+}
