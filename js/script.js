@@ -241,6 +241,7 @@ function hideMopFloor() {
 
 
 /*** Section 9 - Endurance  ***/
+/*
 enduranceQualities = Array.from(enduranceQualities);
 enduranceImages = Array.from(enduranceImages);
 const cloneEnduranceQualities = enduranceQualities.slice(0);
@@ -277,6 +278,7 @@ function hideEnduranceQualities() {
   cloneEnduranceQualities.forEach(el => el.classList.remove('displayFlex'));
   cloneEnduranceImages.forEach(el => el.classList.remove('displayBlock'));
 }
+*/
 /** END OF: Section 9 - Endurance **/
 
 
