@@ -249,12 +249,10 @@ const cloneEnduranceImages = enduranceImages.slice(0);
 cloneEnduranceQualities[0].classList.add('displayFlex');
 cloneEnduranceImages[0].classList.add('displayBlock');
 
-setTimeout(() => {
-  setInterval(() => {
-    hideEnduranceQualities();
-    showEnduranceQuality(0);
-  }, 6000);
-}, 1);
+setInterval(() => {
+  hideEnduranceQualities();
+  showEnduranceQuality(0);
+}, 6000);
 
 setTimeout(() => {
   setInterval(() => {
