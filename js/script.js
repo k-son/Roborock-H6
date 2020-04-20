@@ -26,6 +26,10 @@ let enduranceImages = document.querySelectorAll('.h6__09-endurance__images__imag
 let screenButtons = document.querySelectorAll('.h6__10-screen__button');
 let screenVideos = document.querySelectorAll('.h6__10-screen__video');
 
+// Section 15 - Brushes
+let brushItems = document.querySelectorAll('.h6__15-brushes__item');
+const brushAdditionalText = document.querySelector('.h6__15-brushes__item__additional-text');
+
 
 /*** Create video - Section 2 - Video ***/
 createVideosSectionVideo();
@@ -292,9 +296,9 @@ screenVideos[0].classList.add('displayBlock');
 for (let i=0; i<screenButtons.length; i++) {
   screenButtons[i].addEventListener('click', function() {
     const index = screenButtons.indexOf(screenButtons[i]);
-    const clondedScreenButtons = screenButtons.slice(0);
-    clondedScreenButtons.splice(index, 1);
-    clondedScreenButtons.forEach(el => el.classList.remove('screenButtonPressed'));
+    const clonedScreenButtons = screenButtons.slice(0);
+    clonedScreenButtons.splice(index, 1);
+    clonedScreenButtons.forEach(el => el.classList.remove('screenButtonPressed'));
     screenButtons[i].classList.add('screenButtonPressed');
 
     const clonedScreenVideos = screenVideos.slice(0);
@@ -409,5 +413,43 @@ function getVideosSectionLock() {
   videoUnlock = document.querySelector('.h6__11-lock__video--unlock');
 }
 /** END OF: Section 11 - Lock **/
+
+
+/*** Section 15 - Brushes ***/
+brushItems = Array.from(brushItems);
+
+
+function brushEvents() {
+  
+  const brushMatchMedia = window.matchMedia("(max-width: 720px)");
+
+  if (brushMatchMedia.matches) {
+    for (let i=0; i<brushItems.length; i++) {
+      const index = brushItems.indexOf(brushItems[i]);
+      const clonedBrushItems = brushItems.slice(0);
+      clonedBrushItems.splice(index, 1);
+    
+      brushItems[i].addEventListener('click', function() {
+        clonedBrushItems.forEach(el => el.classList.remove('brushItemOpenHeight'));
+        this.classList.toggle('brushItemOpenHeight');
+        clonedBrushItems.forEach(el => el.lastElementChild.classList.remove('brushItemHideOverlay'));
+        this.lastElementChild.classList.toggle('brushItemHideOverlay');
+        clonedBrushItems.forEach(el => el.firstElementChild.classList.remove('brushItemOpenText'));
+        this.firstElementChild.classList.toggle('brushItemOpenText');
+        if (this.contains(brushAdditionalText)) {
+          brushAdditionalText.classList.toggle('brushItemOpenText');
+        } else {
+          brushAdditionalText.classList.remove('brushItemOpenText');
+        }
+      })
+    }
+  }
+}
+
+brushEvents();
+
+window.addEventListener('resize', brushEvents);
+
+/** END OF: Section 15 - Brushes **/
 
 
