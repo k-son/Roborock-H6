@@ -25,10 +25,27 @@ let enduranceImages = document.querySelectorAll('.h6__09-endurance__images__imag
 // Section 10 - Screen
 let screenButtons = document.querySelectorAll('.h6__10-screen__button');
 let screenVideos = document.querySelectorAll('.h6__10-screen__video');
+let screenVideoLock = document.querySelector('.h6__10-screen__video--lock');
 
 // Section 15 - Brushes
 let brushItems = document.querySelectorAll('.h6__15-brushes__item');
 const brushAdditionalText = document.querySelector('.h6__15-brushes__item__additional-text');
+
+
+function debounce(func, wait, immediate) {
+	var timeout;
+	return function() {
+		var context = this, args = arguments;
+		var later = function() {
+			timeout = null;
+			if (!immediate) func.apply(context, args);
+		};
+		var callNow = immediate && !timeout;
+		clearTimeout(timeout);
+		timeout = setTimeout(later, wait);
+		if (callNow) func.apply(context, args);
+	};
+};
 
 
 /*** Create video - Section 2 - Video ***/
@@ -55,6 +72,7 @@ function addVideo(parentSelector, src, className, width, height) {
     // Create new video element
     const video = document.createElement('video');
     video.muted = true;   
+    video.setAttribute('playsinline', "");
     video.setAttribute('class', className);    
     if(width) {
       video.setAttribute('width', width);
@@ -287,6 +305,8 @@ function hideEnduranceQualities() {
 
 
 /*** Section 10 - Screen  ***/
+screenVideoLock.play();
+
 screenButtons = Array.from(screenButtons);
 screenVideos = Array.from(screenVideos);
 
@@ -377,52 +397,51 @@ function removeLockUnlockVideos() {
 
 
 /// Play videos
-let videoLock;
-let videoUnlock;
-const playVideoLockBtn = document.querySelector('.h6__11-lock__buttons__button--lock');
-const playVideoUnlockBtn = document.querySelector('.h6__11-lock__buttons__button--unlock');
+let lockVideoLock;
+let lockVideoUnlock;
+const playLockVideoLockBtn = document.querySelector('.h6__11-lock__buttons__button--lock');
+const playLockVideoUnlockBtn = document.querySelector('.h6__11-lock__buttons__button--unlock');
 
-playVideoLockBtn.classList.add('focusButtonSectionLock');
-playVideoLockBtn.addEventListener('click', playVideoLock);
-playVideoUnlockBtn.addEventListener('click', playVideoUnlock);
+playLockVideoLockBtn.classList.add('focusButtonSectionLock');
+playLockVideoLockBtn.addEventListener('click', playLockVideoLock);
+playLockVideoUnlockBtn.addEventListener('click', playLockVideoUnlock);
 
-function playVideoLock() {
+function playLockVideoLock() {
   getVideosSectionLock();
-  playVideoUnlockBtn.classList.remove('focusButtonSectionLock');
-  if (!playVideoLockBtn.classList.contains('focusButtonSectionLock')) {
+  playLockVideoUnlockBtn.classList.remove('focusButtonSectionLock');
+  if (!playLockVideoLockBtn.classList.contains('focusButtonSectionLock')) {
     this.classList.add('focusButtonSectionLock');
   }
-  videoUnlock.classList.add('hideVideoSectionLock');
-  videoLock.classList.remove('hideVideoSectionLock');
-  videoLock.play();
+  lockVideoUnlock.classList.add('hideVideoSectionLock');
+  lockVideoLock.classList.remove('hideVideoSectionLock');
+  lockVideoLock.play();
 }
 
-function playVideoUnlock() {
+function playLockVideoUnlock() {
   getVideosSectionLock();
-  playVideoLockBtn.classList.remove('focusButtonSectionLock');
-  if (!playVideoUnlockBtn.classList.contains('focusButtonSectionLock')) {
+  playLockVideoLockBtn.classList.remove('focusButtonSectionLock');
+  if (!playLockVideoUnlockBtn.classList.contains('focusButtonSectionLock')) {
     this.classList.add('focusButtonSectionLock');
   }
-  videoLock.classList.add('hideVideoSectionLock');
-  videoUnlock.classList.remove('hideVideoSectionLock');
-  videoUnlock.play();
+  lockVideoLock.classList.add('hideVideoSectionLock');
+  lockVideoUnlock.classList.remove('hideVideoSectionLock');
+  lockVideoUnlock.play();
 }
 
 function getVideosSectionLock() {
-  videoLock = document.querySelector('.h6__11-lock__video--lock'); 
-  videoUnlock = document.querySelector('.h6__11-lock__video--unlock');
+  lockVideoLock = document.querySelector('.h6__11-lock__video--lock'); 
+  lockVideoUnlock = document.querySelector('.h6__11-lock__video--unlock');
 }
 /** END OF: Section 11 - Lock **/
 
 
 /*** Section 15 - Brushes ***/
 brushItems = Array.from(brushItems);
+const brushMatchMedia = window.matchMedia("(max-width: 720px)");
 
+brushEvents();
 
 function brushEvents() {
-  
-  const brushMatchMedia = window.matchMedia("(max-width: 720px)");
-
   if (brushMatchMedia.matches) {
     for (let i=0; i<brushItems.length; i++) {
       const index = brushItems.indexOf(brushItems[i]);
@@ -431,10 +450,10 @@ function brushEvents() {
     
       brushItems[i].addEventListener('click', function() {
         clonedBrushItems.forEach(el => el.classList.remove('brushItemOpenHeight'));
-        this.classList.toggle('brushItemOpenHeight');
         clonedBrushItems.forEach(el => el.lastElementChild.classList.remove('brushItemHideOverlay'));
-        this.lastElementChild.classList.toggle('brushItemHideOverlay');
         clonedBrushItems.forEach(el => el.firstElementChild.classList.remove('brushItemOpenText'));
+        this.classList.toggle('brushItemOpenHeight');
+        this.lastElementChild.classList.toggle('brushItemHideOverlay');
         this.firstElementChild.classList.toggle('brushItemOpenText');
         if (this.contains(brushAdditionalText)) {
           brushAdditionalText.classList.toggle('brushItemOpenText');
@@ -446,10 +465,18 @@ function brushEvents() {
   }
 }
 
-brushEvents();
+const ifResizedToDesktopCloseBrushAccordion = debounce(function() {
+  if (! brushMatchMedia.matches) {
+    closeBrushAccordion();
+  }
+}, 250);
 
-window.addEventListener('resize', brushEvents);
+function closeBrushAccordion() {
+  brushItems.forEach(el => el.classList.remove('brushItemOpenHeight'));
+  brushItems.forEach(el => el.lastElementChild.classList.remove('brushItemHideOverlay'));
+  brushItems.forEach(el => el.firstElementChild.classList.remove('brushItemOpenText'));
+  brushAdditionalText.classList.remove('brushItemOpenText');
+}
 
+window.addEventListener('resize', ifResizedToDesktopCloseBrushAccordion);
 /** END OF: Section 15 - Brushes **/
-
-
