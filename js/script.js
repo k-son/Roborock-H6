@@ -305,6 +305,7 @@ function hideEnduranceQualities() {
 
 
 /*** Section 10 - Screen  ***/
+// Play video once on load to make it appear on iPhones
 screenVideoLock.play();
 
 screenButtons = Array.from(screenButtons);
@@ -405,6 +406,9 @@ const playLockVideoUnlockBtn = document.querySelector('.h6__11-lock__buttons__bu
 playLockVideoLockBtn.classList.add('focusButtonSectionLock');
 playLockVideoLockBtn.addEventListener('click', playLockVideoLock);
 playLockVideoUnlockBtn.addEventListener('click', playLockVideoUnlock);
+
+// Play video once on load to make it appear on iPhones
+playLockVideoLock();
 
 function playLockVideoLock() {
   getVideosSectionLock();
