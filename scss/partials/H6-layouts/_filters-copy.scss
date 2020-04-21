@@ -65,7 +65,7 @@
 
     @media only screen and (max-width: 422px) {
       top: 75vw;
-      left: 45vw;
+      left: 48vw;
     }
 
     @media only screen and (max-width: 355px) {
@@ -427,29 +427,94 @@
 
   &__modal {
     width: 100vw;
-    height: 100vh;
+    min-height: 100vh;
     position: fixed;
     left: 0;
     top: 0;
-    right: 0;
     bottom: 0;
-    background-color: rgba(120, 120, 120, 0.95);
+    right: 0;
+    background-color: rgba(120, 120, 120, 0.9);
     z-index: 999;
     display: none;
+    overflow-y: auto;
 
     &__content {
-      position: fixed;
+      position: relative;
+      width: 86%;
+      max-width: 72rem;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      width: 90%;
-      max-width: 72rem;
-      max-height: 80vh;
-      margin-top: 3.6rem;
       background-color: var(--color-bg-white);
-      border-radius: 2px;
-      overflow-y: auto;
 
+      @media only screen and (max-width: 601px) {
+        width: 80%;
+        margin-top: 10rem;
+      }
+      @media only screen and (max-width: 330px) {
+        margin-top: 16rem;
+      }
+
+      &__close-btn {
+        position: absolute;
+        top: 1.4rem;
+        right: -6rem;
+        display: inline-block;
+        width: 4rem;
+        height: 4rem;
+        border-radius: 50%;
+        border: 2px solid var(--color-bg-white);
+        vertical-align: middle;
+
+        @media only screen and (max-width: $bp-medium) {
+          right: 50%;
+          top: 102%;
+          transform: translateX(50%);
+          margin-bottom: 3rem;
+        }
+
+        &::before,
+        &::after {
+          display: block;
+          content: "";
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          margin: auto;
+          width: 70%;
+          height: 2px;
+          background-color: var(--color-bg-white);
+        }
+
+        &::before {
+          transform: rotate(45deg);
+        }
+
+        &::after {
+          transform: rotate(-45deg);
+        }
+
+        &:hover {
+          border-color: #333;
+        }
+
+        &:active {
+          border-color: var(--color-roborock);
+        }
+
+        &:hover::before,
+        &:hover::after {
+          background-color: #333;
+        }
+
+        &:active::before,
+        &:active::after {
+          background-color: var(--color-roborock);
+        }
+      }
+  
       &__header {
         background-image: url(../img/heros-H6-modal-header-pc.png);
         background-size: cover;
@@ -525,60 +590,6 @@
           &__description {
           }
         }
-      }
-    }
-
-    &__close-btn {
-      position: absolute;
-      top: 10%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      display: inline-block;
-      width: 4rem;
-      height: 4rem;
-      border-radius: 50%;
-      border: 2px solid var(--color-bg-white);
-      vertical-align: middle;
-
-      &::before,
-      &::after {
-        display: block;
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        margin: auto;
-        width: 70%;
-        height: 2px;
-        background-color: var(--color-bg-white);
-      }
-
-      &::before {
-        transform: rotate(45deg);
-      }
-
-      &::after {
-        transform: rotate(-45deg);
-      }
-
-      &:hover {
-        border-color: #333;
-      }
-
-      &:active {
-        border-color: var(--color-roborock);
-      }
-
-      &:hover::before,
-      &:hover::after {
-        background-color: #333;
-      }
-
-      &:active::before,
-      &:active::after {
-        background-color: var(--color-roborock);
       }
     }
   }

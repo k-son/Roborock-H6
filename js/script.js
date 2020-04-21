@@ -10,7 +10,7 @@ let redDots = document.querySelectorAll('.red-dot__circle');
 let filtersButtons = document.querySelectorAll('.h6__06-filters__indicators__indicator__btn');
 let filterImages = document.querySelectorAll('.h6__06-filters__images__machine');
 const readAboutAllergensBtn = document.querySelector('.readMoreBtn');
-const closeAllergensModalBtn = document.querySelector('.h6__06-filters__modal__content__close-btn');
+const closeAllergensModalBtn = document.querySelector('.h6__06-filters__modal__close-btn');
 const allergensModal = document.querySelector('.h6__06-filters__modal');
 const allergensModalContent = document.querySelector('.h6__06-filters__modal__content');
 
