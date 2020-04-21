@@ -306,7 +306,9 @@ function hideEnduranceQualities() {
 
 /*** Section 10 - Screen  ***/
 // Play video once on load to make it appear on iPhones
-screenVideoLock.play();
+setTimeout(() => {
+  screenVideoLock.play();
+}, 3000);
 
 screenButtons = Array.from(screenButtons);
 screenVideos = Array.from(screenVideos);
@@ -355,37 +357,37 @@ function createVideosSectionLock() {
 /// Replace videos if window resize pass the screen width breakpoint value
 window.addEventListener('resize', replaceLockUnlockVideos);
 
-let currentScreenWidth = window.innerWidth;
+let lockCurrentScreenWidth = window.innerWidth;
 const breakPointForSectionLock = 751; // screen width: 751px 
 
 function replaceLockUnlockVideos() {
-  if (currentScreenWidth <= breakPointForSectionLock) {
+  if (lockCurrentScreenWidth <= breakPointForSectionLock) {
     window.addEventListener('resize', appendHiResVideos);
-  } else if (currentScreenWidth > breakPointForSectionLock) {
+  } else if (lockCurrentScreenWidth > breakPointForSectionLock) {
     window.addEventListener('resize', appendLowResVideos);
   }
 }
 
 function appendHiResVideos() {
-  const newScreenWidth = window.innerWidth;
-  if (newScreenWidth > breakPointForSectionLock) {
+  const lockNewScreenWidth = window.innerWidth;
+  if (lockNewScreenWidth > breakPointForSectionLock) {
     removeLockUnlockVideos();
     addVideo('.h6__11-lock', '../video/heros-H6-video-lock-pc.mp4', 'h6__11-lock__video h6__11-lock__video--lock hideVideoSectionLock', '100%', 'auto');
     addVideo('.h6__11-lock', '../video/heros-H6-video-unlock-pc.mp4', 'h6__11-lock__video h6__11-lock__video--unlock', '100%', 'auto');
   }
   window.removeEventListener('resize', appendHiResVideos);
-  currentScreenWidth = window.innerWidth;
+  lockCurrentScreenWidth = window.innerWidth;
 }
 
 function appendLowResVideos() {
-  const newScreenWidth = window.innerWidth;
-  if (newScreenWidth <= breakPointForSectionLock) {
+  const lockNewScreenWidth = window.innerWidth;
+  if (lockNewScreenWidth <= breakPointForSectionLock) {
     removeLockUnlockVideos();
     addVideo('.h6__11-lock', '../video/heros-H6-video-lock-m.mp4', 'h6__11-lock__video h6__11-lock__video--lock hideVideoSectionLock', '100%', 'auto');
     addVideo('.h6__11-lock', '../video/heros-H6-video-unlock-m.mp4', 'h6__11-lock__video h6__11-lock__video--unlock', '100%', 'auto');
   }
   window.removeEventListener('resize', appendLowResVideos);
-  currentScreenWidth = window.innerWidth;
+  lockCurrentScreenWidth = window.innerWidth;
 }
 
 function removeLockUnlockVideos() {
@@ -408,7 +410,9 @@ playLockVideoLockBtn.addEventListener('click', playLockVideoLock);
 playLockVideoUnlockBtn.addEventListener('click', playLockVideoUnlock);
 
 // Play video once on load to make it appear on iPhones
-playLockVideoLock();
+setTimeout(() => {
+  playLockVideoLock();
+}, 3000);
 
 function playLockVideoLock() {
   getVideosSectionLock();
@@ -442,8 +446,12 @@ function getVideosSectionLock() {
 /*** Section 15 - Brushes ***/
 brushItems = Array.from(brushItems);
 const brushMatchMedia = window.matchMedia("(max-width: 720px)");
+const brushBreakPoint = 720;
+let brushCurrentScreenWidth = window.innerWidth;
 
+/*
 brushEvents();
+
 
 function brushEvents() {
   if (brushMatchMedia.matches) {
@@ -483,4 +491,47 @@ function closeBrushAccordion() {
 }
 
 window.addEventListener('resize', ifResizedToDesktopCloseBrushAccordion);
+*/
+
+if (brushCurrentScreenWidth <= brushBreakPoint) {
+  brushEvents();
+}
+
+function brushEvents() {
+  for (let i=0; i<brushItems.length; i++) {
+    const index = brushItems.indexOf(brushItems[i]);
+    const clonedBrushItems = brushItems.slice(0);
+    clonedBrushItems.splice(index, 1);
+  
+    brushItems[i].addEventListener('click', function() {
+      clonedBrushItems.forEach(el => el.classList.remove('brushItemOpenHeight'));
+      clonedBrushItems.forEach(el => el.lastElementChild.classList.remove('brushItemHideOverlay'));
+      clonedBrushItems.forEach(el => el.firstElementChild.classList.remove('brushItemOpenText'));
+      this.classList.toggle('brushItemOpenHeight');
+      this.lastElementChild.classList.toggle('brushItemHideOverlay');
+      this.firstElementChild.classList.toggle('brushItemOpenText');
+      if (this.contains(brushAdditionalText)) {
+        brushAdditionalText.classList.toggle('brushItemOpenText');
+      } else {
+        brushAdditionalText.classList.remove('brushItemOpenText');
+      }
+    })
+  }
+}
+
+const ifResizedToDesktopCloseBrushAccordion = debounce(function() {
+  if (brushCurrentScreenWidth > brushBreakPoint) {
+    closeBrushAccordion();
+  }
+}, 250);
+
+function closeBrushAccordion() {
+  brushItems.forEach(el => el.classList.remove('brushItemOpenHeight'));
+  brushItems.forEach(el => el.lastElementChild.classList.remove('brushItemHideOverlay'));
+  brushItems.forEach(el => el.firstElementChild.classList.remove('brushItemOpenText'));
+  brushAdditionalText.classList.remove('brushItemOpenText');
+}
+
+
+
 /** END OF: Section 15 - Brushes **/

@@ -30,13 +30,22 @@
       width: 55%;
       z-index: 5;
 
+      @media only screen and (max-width: $bp-large) {
+        top: 3.2rem;
+        width: 75%;
+      }
+
+      @media only screen and (max-width: 800px) {
+        top: 4rem;
+      }
+
       @media only screen and (max-width: 650px) {
         width: 70%;
       }
 
       @media only screen and (max-width: $bp-small) {
         position: relative;
-        width: 80%;
+        width: 90%;
         margin: 0 auto;
         padding: 2.4rem;
         text-align: center;
@@ -47,7 +56,7 @@
       }
 
       &--carpet {
-        left: 10%;
+        left: 5%;
 
         @media only screen and (max-width: $bp-small) {
           top: 0;
@@ -56,10 +65,10 @@
       }
 
       &--floor {
-        left: 25%;
+        left: 20%;
 
         @media only screen and (max-width: 800px) {
-          left: 10%;
+          left: 5%;
         }
 
         @media only screen and (max-width: $bp-small) {
@@ -70,10 +79,21 @@
 
       & h3 {
         @include H6-h3;
+        font-size: 2.8rem;
       }
 
       & p {
         @include H6-paragraph;
+
+        @media only screen and (max-width: $bp-large) {
+          background-color: rgba(255,255,255,.7);
+          padding: .4rem;
+        }
+
+        @media only screen and (max-width: 800px) {
+          background-color: transparent;
+          padding: 0;
+        }
       }
     }
 
@@ -100,6 +120,11 @@
           top: 58%;
           left: 20%;
         }
+
+        @media only screen and (max-width: 400px) {
+          top: 65%;
+          left: 15%;
+        }
       }
 
       &--floor {
@@ -116,6 +141,11 @@
           height: 15vw;
           top: 60%;
           left: 20%;
+        }
+
+        @media only screen and (max-width: 400px) {
+          top: 63%;
+          left: 14%;
         }
       }
     }
@@ -234,6 +264,11 @@
       top: 68%;
       left: 42%;
     }
+
+    @media only screen and (max-width: 400px) {
+      top: 73%;
+      left: 40%;
+    }
   }
 
   &--floor {
@@ -252,6 +287,11 @@
     @media only screen and (max-width: 600px) {
       top: 70%;
       left: 45%;
+    }
+
+    @media only screen and (max-width: 400px) {
+      top: 72%;
+      left: 41%;
     }
   } 
 }

@@ -48,6 +48,10 @@
         margin-bottom: 2.4rem;
       }
 
+      @media only screen and (max-width: 400px) {
+        flex-direction: column;
+      }
+
       &__feature {
         width: 23rem;
         margin-bottom: 2.4rem;
