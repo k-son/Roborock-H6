@@ -586,7 +586,7 @@
   &__allergensBtn {
     z-index: 5;
     background-image: linear-gradient(to right, #090C11, #10171F, #10171F, #090D10, #040507);
-
+/*
     @media only screen and (max-width: 800px) and (min-width: 601px) {
       position: absolute;
       left: 50%;
@@ -594,7 +594,7 @@
       bottom: 2.4rem;
       background-image: none;
     }
-
+*/
     @media only screen and (max-width: 600px) {
       background-image: linear-gradient(to right, #0B1014, #111820, #121C25, #131A22, #10141D);
     }
@@ -608,6 +608,7 @@
   font-size: 1.8rem;
   font-style: italic;
   letter-spacing: 1px;
+  text-align: center;
   text-decoration: none;
   padding: .8rem 3.2rem;
   margin-top: 3rem;
@@ -630,7 +631,9 @@
   }
 
   @media only screen and (max-width: 400px) {
-    font-size: 1.3rem;
+    width: 100%;
+    font-size: 1.4rem;
+    border-radius: 0;
   }
 
   @media only screen and (max-width: 350px) {
@@ -645,6 +648,10 @@
   &:hover,
   &:focus {
     box-shadow: 0 0 0 3px var(--color-txt-white);
+
+    @media only screen and (max-width: 700px) {
+      box-shadow: 0 0 0 2px var(--color-txt-white);
+    }
   }
 }
 
