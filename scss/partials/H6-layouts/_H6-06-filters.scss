@@ -586,15 +586,15 @@
   &__allergensBtn {
     z-index: 5;
     background-image: linear-gradient(to right, #090C11, #10171F, #10171F, #090D10, #040507);
-/*
-    @media only screen and (max-width: 800px) and (min-width: 601px) {
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
-      bottom: 2.4rem;
-      background-image: none;
+
+    @media only screen and (max-width: 1150px) {
+      background-image: linear-gradient(to right, #090C11, #10171F, #0F161E, #090D10, #0A0D13);
     }
-*/
+
+    @media only screen and (max-width: 800px) {
+      background-image: linear-gradient(to right, #10131c, #121a22, #121d26, #131b24, #10141c);
+    }
+
     @media only screen and (max-width: 600px) {
       background-image: linear-gradient(to right, #0B1014, #111820, #121C25, #131A22, #10141D);
     }
