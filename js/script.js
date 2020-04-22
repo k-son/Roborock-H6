@@ -445,59 +445,16 @@ function getVideosSectionLock() {
 
 /*** Section 15 - Brushes ***/
 brushItems = Array.from(brushItems);
-const brushMatchMedia = window.matchMedia("(max-width: 720px)");
 const brushBreakPoint = 720;
 let brushCurrentScreenWidth = window.innerWidth;
 
-/*
-brushEvents();
-
-
-function brushEvents() {
-  if (brushMatchMedia.matches) {
-    for (let i=0; i<brushItems.length; i++) {
-      const index = brushItems.indexOf(brushItems[i]);
-      const clonedBrushItems = brushItems.slice(0);
-      clonedBrushItems.splice(index, 1);
-    
-      brushItems[i].addEventListener('click', function() {
-        clonedBrushItems.forEach(el => el.classList.remove('brushItemOpenHeight'));
-        clonedBrushItems.forEach(el => el.lastElementChild.classList.remove('brushItemHideOverlay'));
-        clonedBrushItems.forEach(el => el.firstElementChild.classList.remove('brushItemOpenText'));
-        this.classList.toggle('brushItemOpenHeight');
-        this.lastElementChild.classList.toggle('brushItemHideOverlay');
-        this.firstElementChild.classList.toggle('brushItemOpenText');
-        if (this.contains(brushAdditionalText)) {
-          brushAdditionalText.classList.toggle('brushItemOpenText');
-        } else {
-          brushAdditionalText.classList.remove('brushItemOpenText');
-        }
-      })
-    }
+window.addEventListener('load', function() {
+  if (brushCurrentScreenWidth <= brushBreakPoint) {
+    brushMobileEvents();
   }
-}
+});
 
-const ifResizedToDesktopCloseBrushAccordion = debounce(function() {
-  if (! brushMatchMedia.matches) {
-    closeBrushAccordion();
-  }
-}, 250);
-
-function closeBrushAccordion() {
-  brushItems.forEach(el => el.classList.remove('brushItemOpenHeight'));
-  brushItems.forEach(el => el.lastElementChild.classList.remove('brushItemHideOverlay'));
-  brushItems.forEach(el => el.firstElementChild.classList.remove('brushItemOpenText'));
-  brushAdditionalText.classList.remove('brushItemOpenText');
-}
-
-window.addEventListener('resize', ifResizedToDesktopCloseBrushAccordion);
-*/
-
-if (brushCurrentScreenWidth <= brushBreakPoint) {
-  brushEvents();
-}
-
-function brushEvents() {
+function brushMobileEvents() {
   for (let i=0; i<brushItems.length; i++) {
     const index = brushItems.indexOf(brushItems[i]);
     const clonedBrushItems = brushItems.slice(0);
@@ -519,9 +476,23 @@ function brushEvents() {
   }
 }
 
-const ifResizedToDesktopCloseBrushAccordion = debounce(function() {
-  if (brushCurrentScreenWidth > brushBreakPoint) {
+// When resizing window from over brushBreakPoint width to under brushBreakPoint width
+if (brushCurrentScreenWidth > brushBreakPoint) {
+  window.addEventListener('resize', whenResizedToMobileLoadMobileBrushEvents);
+}
+
+function whenResizedToMobileLoadMobileBrushEvents() {
+  if (window.innerWidth <= brushBreakPoint) {
+    brushMobileEvents();
+    window.removeEventListener('resize', whenResizedToMobileLoadMobileBrushEvents);
+  }
+}
+
+// When resizing window from under brushBreakPoint width to over brushBreakPoint width
+const whenResizedToDesktop = debounce(function() {
+  if (window.innerWidth > brushBreakPoint) {
     closeBrushAccordion();
+    window.removeEventListener('resize', whenResizedToMobileLoadMobileBrushEvents);
   }
 }, 250);
 
@@ -532,6 +503,5 @@ function closeBrushAccordion() {
   brushAdditionalText.classList.remove('brushItemOpenText');
 }
 
-
-
+window.addEventListener('resize', whenResizedToDesktop);
 /** END OF: Section 15 - Brushes **/
