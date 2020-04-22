@@ -78,7 +78,8 @@
         }
       }
 
-      &:hover {
+      &:hover,
+      &:focus {
         border-color: var(--color-roborock);
       }
     }
