@@ -18,10 +18,6 @@ const allergensModalContent = document.querySelector('.h6__06-filters__modal__co
 const mopCarpet = document.querySelector('.h6__08-mop__item--carpet');
 const mopFloor = document.querySelector('.h6__08-mop__item--floor');
 
-// Section 9 - Endurance
-let enduranceQualities = document.querySelectorAll('.h6__09-endurance__qualities__quality');
-let enduranceImages = document.querySelectorAll('.h6__09-endurance__images__image img');
-
 // Section 10 - Screen
 let screenButtons = document.querySelectorAll('.h6__10-screen__button');
 let screenVideos = document.querySelectorAll('.h6__10-screen__video');
@@ -144,7 +140,7 @@ for (let i=0; i<redDots.length; i++) {
     const cloneRedDots = redDots.slice();
     cloneRedDots.splice(index, 1);
     cloneRedDots.forEach(el => el.nextElementSibling.classList.remove('opacity1'));
-    redDots[i].nextElementSibling.classList.toggle('opacity1');
+    this.nextElementSibling.classList.toggle('opacity1');
   })
 }
 /** END OF: Tooltip on btn press **/
@@ -171,8 +167,8 @@ for (let i=0; i<filtersButtons.length; i++) {
     // handle buttons' styles
     cloneFiltersButtons.forEach(el => el.firstElementChild.classList.remove('hoveredDigit'));
     cloneFiltersButtons.forEach(el => el.lastElementChild.lastElementChild.classList.remove('displayInline')); //contract button's inner text
-    filtersButtons[i].firstElementChild.classList.toggle('hoveredDigit');
-    filtersButtons[i].lastElementChild.lastElementChild.classList.toggle('displayInline'); //expand button's inner text
+    this.firstElementChild.classList.toggle('hoveredDigit');
+    this.lastElementChild.lastElementChild.classList.toggle('displayInline'); //expand button's inner text
 
     // chceck if any button is active
     const cloneFilterImagesContainingClassOpacity1 = [];
@@ -232,10 +228,8 @@ function allergensModalInsideContentClick(e) {
 
 
 /*** Transform divs on hover - Section 8 - Mop ***/
-window.addEventListener('load', checkIfScreenOver801pxWide);
-window.addEventListener('resize', checkIfScreenOver801pxWide);
 
-function checkIfScreenOver801pxWide() {
+const checkIfScreenOver801pxWide = debounce(function() {
   const mopMatchMedia = window.matchMedia("(min-width: 801px)");
   
   if (mopMatchMedia.matches) {
@@ -248,7 +242,10 @@ function checkIfScreenOver801pxWide() {
     mopFloor.removeEventListener('mouseover', hideMopCarpet);
     mopFloor.removeEventListener('mouseout', hideMopFloor);
   }
-}
+}, 250);
+
+window.addEventListener('load', checkIfScreenOver801pxWide);
+window.addEventListener('resize', checkIfScreenOver801pxWide);
 
 function hideMopCarpet() {
   mopCarpet.classList.add('mop-carpet');
@@ -260,48 +257,6 @@ function hideMopFloor() {
   mopFloor.classList.add('mop-floor');
 }
 /** END OF: Section 8 - Mop **/
-
-
-/*** Section 9 - Endurance  ***/
-/*
-enduranceQualities = Array.from(enduranceQualities);
-enduranceImages = Array.from(enduranceImages);
-const cloneEnduranceQualities = enduranceQualities.slice(0);
-const cloneEnduranceImages = enduranceImages.slice(0);
-
-cloneEnduranceQualities[0].classList.add('displayFlex');
-cloneEnduranceImages[0].classList.add('displayBlock');
-
-setInterval(() => {
-  hideEnduranceQualities();
-  showEnduranceQuality(0);
-}, 6000);
-
-setTimeout(() => {
-  setInterval(() => {
-    hideEnduranceQualities();
-    showEnduranceQuality(1);
-  }, 6000);
-}, 2000);
-
-setTimeout(() => {
-  setInterval(() => {
-    hideEnduranceQualities();
-    showEnduranceQuality(2);
-  }, 6000);
-}, 4000);
-
-function showEnduranceQuality(i) {
-  cloneEnduranceQualities[i].classList.add('displayFlex');
-  cloneEnduranceImages[i].classList.add('displayBlock');
-}
-
-function hideEnduranceQualities() {
-  cloneEnduranceQualities.forEach(el => el.classList.remove('displayFlex'));
-  cloneEnduranceImages.forEach(el => el.classList.remove('displayBlock'));
-}
-*/
-/** END OF: Section 9 - Endurance **/
 
 
 /*** Section 10 - Screen  ***/
@@ -322,7 +277,7 @@ for (let i=0; i<screenButtons.length; i++) {
     const clonedScreenButtons = screenButtons.slice(0);
     clonedScreenButtons.splice(index, 1);
     clonedScreenButtons.forEach(el => el.classList.remove('screenButtonPressed'));
-    screenButtons[i].classList.add('screenButtonPressed');
+    this.classList.add('screenButtonPressed');
 
     const clonedScreenVideos = screenVideos.slice(0);
     clonedScreenVideos.splice(index, 1);
@@ -342,6 +297,7 @@ for (let i=0; i<screenButtons.length; i++) {
 /// Create and append videos
 createVideosSectionLock();
 
+// You can find "addVideo" function code in Section 02 - Video
 function createVideosSectionLock() {
   const lockMatchMedia = window.matchMedia("(max-width: 751px)");
   if (lockMatchMedia.matches) {
@@ -352,13 +308,32 @@ function createVideosSectionLock() {
     addVideo('.h6__11-lock', '../video/heros-H6-video-unlock-pc.mp4', 'h6__11-lock__video h6__11-lock__video--unlock hideVideoSectionLock', '100%', 'auto');
   }
 }
-// You can find "addVideo" function code in Section 02 - Video
 
 /// Replace videos if window resize pass the screen width breakpoint value
-window.addEventListener('resize', replaceLockUnlockVideos);
-
 let lockCurrentScreenWidth = window.innerWidth;
 const breakPointForSectionLock = 751; // screen width: 751px 
+
+const appendHiResVideos = debounce(function() {
+  const lockNewScreenWidth = window.innerWidth;
+  if (lockNewScreenWidth > breakPointForSectionLock) {
+    removeLockUnlockVideos();
+    addVideo('.h6__11-lock', '../video/heros-H6-video-lock-pc.mp4', 'h6__11-lock__video h6__11-lock__video--lock hideVideoSectionLock', '100%', 'auto');
+    addVideo('.h6__11-lock', '../video/heros-H6-video-unlock-pc.mp4', 'h6__11-lock__video h6__11-lock__video--unlock', '100%', 'auto');
+  }
+  lockCurrentScreenWidth = window.innerWidth;
+  replaceLockUnlockVideos();
+}, 250);
+
+const appendLowResVideos = debounce(function() {
+  const lockNewScreenWidth = window.innerWidth;
+  if (lockNewScreenWidth <= breakPointForSectionLock) {
+    removeLockUnlockVideos();
+    addVideo('.h6__11-lock', '../video/heros-H6-video-lock-m.mp4', 'h6__11-lock__video h6__11-lock__video--lock hideVideoSectionLock', '100%', 'auto');
+    addVideo('.h6__11-lock', '../video/heros-H6-video-unlock-m.mp4', 'h6__11-lock__video h6__11-lock__video--unlock', '100%', 'auto');
+  }
+  lockCurrentScreenWidth = window.innerWidth;
+  replaceLockUnlockVideos();
+}, 250);
 
 function replaceLockUnlockVideos() {
   if (lockCurrentScreenWidth <= breakPointForSectionLock) {
@@ -367,28 +342,7 @@ function replaceLockUnlockVideos() {
     window.addEventListener('resize', appendLowResVideos);
   }
 }
-
-function appendHiResVideos() {
-  const lockNewScreenWidth = window.innerWidth;
-  if (lockNewScreenWidth > breakPointForSectionLock) {
-    removeLockUnlockVideos();
-    addVideo('.h6__11-lock', '../video/heros-H6-video-lock-pc.mp4', 'h6__11-lock__video h6__11-lock__video--lock hideVideoSectionLock', '100%', 'auto');
-    addVideo('.h6__11-lock', '../video/heros-H6-video-unlock-pc.mp4', 'h6__11-lock__video h6__11-lock__video--unlock', '100%', 'auto');
-  }
-  window.removeEventListener('resize', appendHiResVideos);
-  lockCurrentScreenWidth = window.innerWidth;
-}
-
-function appendLowResVideos() {
-  const lockNewScreenWidth = window.innerWidth;
-  if (lockNewScreenWidth <= breakPointForSectionLock) {
-    removeLockUnlockVideos();
-    addVideo('.h6__11-lock', '../video/heros-H6-video-lock-m.mp4', 'h6__11-lock__video h6__11-lock__video--lock hideVideoSectionLock', '100%', 'auto');
-    addVideo('.h6__11-lock', '../video/heros-H6-video-unlock-m.mp4', 'h6__11-lock__video h6__11-lock__video--unlock', '100%', 'auto');
-  }
-  window.removeEventListener('resize', appendLowResVideos);
-  lockCurrentScreenWidth = window.innerWidth;
-}
+replaceLockUnlockVideos();
 
 function removeLockUnlockVideos() {
   const parent = document.querySelector('.h6__11-lock');
@@ -397,7 +351,6 @@ function removeLockUnlockVideos() {
   parent.removeChild(videoToRemove1);
   parent.removeChild(videoToRemove2);
 }
-
 
 /// Play videos
 let lockVideoLock;
