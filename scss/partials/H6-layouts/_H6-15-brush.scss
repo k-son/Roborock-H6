@@ -98,7 +98,8 @@
       }
     }
 
-    &:hover > &__overlay {
+    &:hover &__overlay,
+    &__btn:focus > &__overlay {
 
       @media only screen and (min-width: 721px) {
         display: none;
