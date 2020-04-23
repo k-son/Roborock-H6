@@ -11,7 +11,7 @@ let filtersButtons = document.querySelectorAll('.h6__06-filters__indicators__ind
 let filterImages = document.querySelectorAll('.h6__06-filters__images__machine');
 const readAboutAllergensBtn = document.querySelector('.readMoreBtn');
 const closeAllergensModalBtn = document.querySelector('.h6__06-filters__modal__close-btn');
-const allergensModal = document.querySelector('.h6__06-filters__modal');
+const allergensModalOverlay = document.querySelector('.h6__06-filters__modal__overlay');
 const allergensModalContent = document.querySelector('.h6__06-filters__modal__content');
 
 // Section 8 - Mop
@@ -194,7 +194,7 @@ for (let i=0; i<filtersButtons.length; i++) {
 
 // Allergens Modal
 readAboutAllergensBtn.addEventListener('click', function() {
-  allergensModal.classList.add('displayBlock');
+  allergensModalOverlay.classList.add('displayBlock');
   document.body.classList.add('overflowHidden');
   document.body.addEventListener('keydown', closeAllergensModalOnKeypress);
 })
@@ -203,7 +203,7 @@ closeAllergensModalBtn.addEventListener('click', function() {
   closeAllergensModal();
 })
 
-allergensModal.addEventListener('click', closeAllergensModal);
+allergensModalOverlay.addEventListener('click', closeAllergensModal);
 allergensModalContent.addEventListener('click', allergensModalInsideContentClick);
 
 function closeAllergensModalOnKeypress(e) {
@@ -214,7 +214,7 @@ function closeAllergensModalOnKeypress(e) {
 }
 
 function closeAllergensModal() {
-  allergensModal.classList.remove('displayBlock');
+  allergensModalOverlay.classList.remove('displayBlock');
   document.body.classList.remove('overflowHidden');
 }
 
