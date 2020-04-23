@@ -6,13 +6,14 @@ const animatedElement2 = document.querySelector("#countUpValue--2");
 // Section 5 - House
 let redDots = document.querySelectorAll('.red-dot__circle');
 
-// Section 6 - Filters
+// Section 6 - Filters, Modal
 let filtersButtons = document.querySelectorAll('.h6__06-filters__indicators__indicator__btn');
 let filterImages = document.querySelectorAll('.h6__06-filters__images__machine');
 const readAboutAllergensBtn = document.querySelector('.readMoreBtn');
 const closeAllergensModalBtn = document.querySelector('.h6__06-filters__modal__close-btn');
 const allergensModalOverlay = document.querySelector('.h6__06-filters__modal__overlay');
 const allergensModalContent = document.querySelector('.h6__06-filters__modal__content');
+let keyboardFocusableElements = document.querySelectorAll('a, button, input, textarea, slect, details, [tabindex]:not([tabindex="-1]');
 
 // Section 8 - Mop
 const mopCarpet = document.querySelector('.h6__08-mop__item--carpet');
@@ -146,10 +147,10 @@ for (let i=0; i<redDots.length; i++) {
 /** END OF: Tooltip on btn press **/
 
 
-/*** Section 6 - Filters  ***/
+/*** Section 6 - Filters, Modal  ***/
 /* Switch images, Allergens Modal */
 
-// Switch images
+/// Switch images
 filterImages = Array.from(filterImages);
 const baseFilterImage = filterImages[0];
 filterImages.shift();
@@ -192,11 +193,24 @@ for (let i=0; i<filtersButtons.length; i++) {
   })
 }
 
-// Allergens Modal
+/// Allergens Modal
+// disable focus on all elements besides modal elements when modal is open
+keyboardFocusableElements = Array.from(keyboardFocusableElements);
+let noModalKeyboardFocusableElements = keyboardFocusableElements.slice(0);
+
+noModalKeyboardFocusableElements = noModalKeyboardFocusableElements.filter(function(item) {
+  return item !== closeAllergensModalBtn;
+})
+noModalKeyboardFocusableElements = noModalKeyboardFocusableElements.filter(function(item) {
+  return item !== allergensModalContent;
+})
+
+// open/close modal events
 readAboutAllergensBtn.addEventListener('click', function() {
   allergensModalOverlay.classList.add('displayBlock');
   document.body.classList.add('overflowHidden');
   document.body.addEventListener('keydown', closeAllergensModalOnKeypress);
+  noModalKeyboardFocusableElements.forEach(el => el.setAttribute('tabindex', '-1'));
 })
 
 closeAllergensModalBtn.addEventListener('click', function() {
@@ -216,6 +230,7 @@ function closeAllergensModalOnKeypress(e) {
 function closeAllergensModal() {
   allergensModalOverlay.classList.remove('displayBlock');
   document.body.classList.remove('overflowHidden');
+  noModalKeyboardFocusableElements.forEach(el => el.setAttribute('tabindex', '0'));
 }
 
 function allergensModalInsideContentClick(e) {
@@ -224,7 +239,7 @@ function allergensModalInsideContentClick(e) {
   e.stopImmediatePropagation();
   return false;
 }
-/** END OF: Section 6 - Filters **/
+/** END OF: Section 6 - Filters, Modal **/
 
 
 /*** Transform divs on hover - Section 8 - Mop ***/
