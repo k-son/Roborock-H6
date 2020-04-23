@@ -563,7 +563,8 @@
         transform: rotate(-45deg);
       }
 
-      &:hover {
+      &:hover,
+      &:focus {
         border-color: #333;
       }
 
@@ -572,7 +573,9 @@
       }
 
       &:hover::before,
-      &:hover::after {
+      &:hover::after,
+      &:focus::before,
+      &:focus::after {
         background-color: #333;
       }
 
