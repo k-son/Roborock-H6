@@ -243,7 +243,6 @@ function allergensModalInsideContentClick(e) {
 
 
 /*** Transform divs on hover - Section 8 - Mop ***/
-
 const checkIfScreenOver801pxWide = debounce(function() {
   const mopMatchMedia = window.matchMedia("(min-width: 801px)");
   
@@ -251,6 +250,8 @@ const checkIfScreenOver801pxWide = debounce(function() {
     mopFloor.classList.add('mop-floor');
     mopFloor.addEventListener('mouseover', hideMopCarpet);
     mopFloor.addEventListener('mouseout', hideMopFloor);
+    mopFloor.addEventListener('focus', hideMopCarpet);
+    mopFloor.addEventListener('blur', hideMopFloor);
   } else {
     mopCarpet.classList.remove('mop-carpet');
     mopFloor.classList.remove('mop-floor');
@@ -271,6 +272,9 @@ function hideMopFloor() {
   mopCarpet.classList.remove('mop-carpet');
   mopFloor.classList.add('mop-floor');
 }
+
+
+
 /** END OF: Section 8 - Mop **/
 
 
