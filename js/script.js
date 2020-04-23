@@ -260,7 +260,7 @@ const checkIfScreenOver801pxWide = debounce(function() {
     mopFloor.removeEventListener('focus', hideMopCarpet);
     mopFloor.removeEventListener('blur', hideMopFloor);
   }
-}, 250);
+}, 100);
 
 window.addEventListener('load', checkIfScreenOver801pxWide);
 window.addEventListener('resize', checkIfScreenOver801pxWide);
