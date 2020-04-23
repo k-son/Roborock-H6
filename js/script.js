@@ -207,7 +207,7 @@ allergensModal.addEventListener('click', closeAllergensModal);
 allergensModalContent.addEventListener('click', allergensModalInsideContentClick);
 
 function closeAllergensModalOnKeypress(e) {
-  if (e.keyCode === 27 || e.keyCode === 13) {
+  if (e.keyCode === 27) {
     event.preventDefault();
     closeAllergensModal();
   }
