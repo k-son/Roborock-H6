@@ -69,13 +69,16 @@
 
   &__soundwave {
     display: flex;
+    flex: 0 0 auto;
     justify-content: center;
     align-items: center;
     z-index: 2;
     height: 8rem;
 
     &__wave {
+      display: block;
       width: 4px;
+      max-height: 4.2rem;
       animation-name: soundwave;
       animation-iteration-count: infinite;
       animation-direction: alternate;
