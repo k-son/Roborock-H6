@@ -78,7 +78,9 @@
     &__wave {
       display: block;
       width: 4px;
-      max-height: 4.2rem;
+      height: 100%;
+      height: 4.2rem;
+      background-color: #888;
       animation-name: soundwave;
       animation-iteration-count: infinite;
       animation-direction: alternate;
@@ -278,10 +280,6 @@
 
 
 @keyframes soundwave {
-  0% {
-    height: 4.2rem;     
-    background-color: #888;
-  }
   100% {
     background-color: #444;
     height: 1.2rem;
