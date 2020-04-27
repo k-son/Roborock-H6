@@ -383,7 +383,6 @@
     }
 
     &__machine {
-      transition: opacity .5s;
 
       & img {
         display: block;
@@ -413,14 +412,6 @@
           width: 100%;
           height: auto;     
         }
-      }
-
-      &--1,
-      &--2,
-      &--3,
-      &--4,
-      &--5 {
-        opacity: 0;
       }
     }
   }
@@ -663,10 +654,6 @@
 
 
 // js classes
-.opacity1 {
-  opacity: 1;
-}
-
 .hoveredDigit {
   background-color: var(--color-roborock);
   border-color: var(--color-roborock);

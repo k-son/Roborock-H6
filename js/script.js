@@ -1,3 +1,4 @@
+"use strict";
 /*** Variables ***/
 // Section 4 - Battery
 const animatedElement1 = document.querySelector("#countUpValue--1");
@@ -9,6 +10,7 @@ let redDots = document.querySelectorAll('.red-dot__circle');
 // Section 6 - Filters, Modal
 let filtersButtons = document.querySelectorAll('.h6__06-filters__indicators__indicator__btn');
 let filterImages = document.querySelectorAll('.h6__06-filters__images__machine');
+const cloneFilterImagesContainingClassDisplayBlock = [];
 const readAboutAllergensBtn = document.querySelector('.readMoreBtn');
 const closeAllergensModalBtn = document.querySelector('.h6__06-filters__modal__close-btn');
 const allergensModalOverlay = document.querySelector('.h6__06-filters__modal__overlay');
@@ -157,6 +159,8 @@ filterImages.shift();
 filterImages.reverse();
 filtersButtons = Array.from(filtersButtons);
 
+filterImages.forEach(el => el.style.display = "none");
+
 for (let i=0; i<filtersButtons.length; i++) {
   filtersButtons[i].addEventListener('click', function() { 
     const index = filtersButtons.indexOf(filtersButtons[i]);
@@ -172,26 +176,26 @@ for (let i=0; i<filtersButtons.length; i++) {
     this.lastElementChild.lastElementChild.classList.toggle('displayInline'); //expand button's inner text
 
     // chceck if any button is active
-    const cloneFilterImagesContainingClassOpacity1 = [];
     for (let i=0; i<cloneFilterImages.length; i++) {
-      if (cloneFilterImages[i].classList.contains('opacity1')) {
-        cloneFilterImagesContainingClassOpacity1.push(cloneFilterImages[i]);
+      if (cloneFilterImages[i].classList.contains('displayBlock')) {
+        cloneFilterImagesContainingClassDisplayBlock.push(cloneFilterImages[i]);
       }
     }
 
     // if any button is active, then hide base image
-    if (cloneFilterImagesContainingClassOpacity1.length > 0) {
+    if (cloneFilterImagesContainingClassDisplayBlock.length > 0) {
       baseFilterImage.style.display = "none";
       }
 
     // handle images' styles
-    cloneFilterImages.forEach(el => el.classList.remove('opacity1'));
-    filterImages[i].classList.toggle('opacity1');
-    if (! filterImages[i].classList.contains('opacity1')) {
+    cloneFilterImages.forEach(el => el.classList.remove('displayBlock'));
+    filterImages[i].classList.toggle('displayBlock');
+    if (!filterImages[i].classList.contains('displayBlock')) {
       baseFilterImage.style.display = "block";
     }
   })
 }
+
 
 /// Allergens Modal
 // disable focus on all elements besides modal elements when modal is open
